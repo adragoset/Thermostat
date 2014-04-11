@@ -6,13 +6,13 @@ An implementation of a touch screen thermostat for the .net micro framework. Cur
 The project is set up for the following hardware:
 
 Current-
-Controller:  G400-S SoM (FEZ Raptor Mainboard Part # RAPTR-GM-499)
-Temperature&Humidity Sensor: Part # STHSN-GM-344
-3 x Relays: Relay X1 Module Part # RLYX1-GM-464
+Controller:  G400-S SoM (FEZ Raptor Mainboard Part # RAPTR-GM-499,
+Temperature&Humidity Sensor: Part # STHSN-GM-344,
+3 x Relays: Relay X1 Module Part # RLYX1-GM-464,
 Display: Display CP7 Module Part # DSCP7-GM-376
 
 Planned-
-Wireless: WiFi RS21 Module Part # WFR21-GM-282
+Wireless: WiFi RS21 Module Part # WFR21-GM-282,
 Gas Sensor: GasSense Module Part # GASSN-GM-393
 
 Controler and modules available from GHI electronics - https://www.ghielectronics.com/catalog/category/265
