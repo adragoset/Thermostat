@@ -1,5 +1,0 @@
-<Glide Version="1.0">
-  <Window X="0" Y="0" Width ="320" Height ="240" Color ="A0A0A0">
-    <Button X="10" Y="10" Width="50" Heigh="30" BackColor="C0A0F0" BorderColor="11BB11" TextColor="0" Visible="True" Enabled ="True" Font="0" Content="Slide" Name="Btn1"></Button>
-  </Window>
-</Glide>
