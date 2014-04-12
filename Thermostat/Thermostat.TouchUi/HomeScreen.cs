@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using Microsoft.SPOT;
+using Microsoft.SPOT.Presentation;
+using Microsoft.SPOT.Presentation.Media;
 
 using GHI.Glide;
 using GHI.Glide.Display;
@@ -13,6 +15,9 @@ namespace Thermostat.TouchUi
     {
         private Settings Settings { get; set; }
         private SensorMeasurements Measurements { get; set; }
+
+        private Hashtable Images { get; set; }
+        private Hashtable Screens { get; set; }
 
         public Window Window { get; private set; }
         public Button ButtonIncrementSetTemperatureDown { get; private set; }
@@ -29,44 +34,25 @@ namespace Thermostat.TouchUi
         public TextBox CurrentTemperatureValue { get; private set; }
         public TextBox DateTime { get; private set; }
 
-        public HomeScreen(string xml, Settings settings, SensorMeasurements measurements)
+        public HomeScreen(Settings settings, SensorMeasurements measurements, Hashtable images, Hashtable screens)
         {
             Settings = settings;
             Measurements = measurements;
-            // Load the Window XML string.
-            Window = GlideLoader.LoadWindow(xml);
+            Images = images;
+            Screens = screens;
 
-            //Controls
-            ButtonIncrementSetTemperatureUp = (Button)Window.GetChildByName("IncrementTemperatureUp");
-            ButtonIncrementSetTemperatureDown = (Button)Window.GetChildByName("IncrementTemperatureDown");
-            ButtonModeOff = (Button)Window.GetChildByName("Off Mode");
-            ButtonFan = (Button)Window.GetChildByName("Fan Mode");
-            ButtonHeat = (Button)Window.GetChildByName("Heat Mode");
-            ButtonCool = (Button)Window.GetChildByName("AC Mode");
-            ButtonAuto = (Button)Window.GetChildByName("Auto Mode");
-            ButtonUnits = (Button)Window.GetChildByName("Units");
-            ButtonSettings = (Button)Window.GetChildByName("Settings");
+            // Load the Window XML string.
+            Window = GlideLoader.LoadWindow((String)screens["ControlScreen"]);
+            Window.BackImage = (Bitmap)images["BackGround"];
 
             //Info Boxes 
             SetTemperatureValue = (TextBox)Window.GetChildByName("SetTemperature");
+            settings.TargetTemp.TemperatureSettingChanged += (a, b) => Handle_TempSetting_Change(a, b);
             CurrentTemperatureValue = (TextBox)Window.GetChildByName("CurrentTemperatureValue");
+            Measurements.PrimaryAirTemperature.TemperatureChanged += (a, b) => Handle_CurrentTemp_Change(a, b);
             DateTime = (TextBox)Window.GetChildByName("TimeDisplay");
 
-            // Set up event handlers
-            //buttons
-            ButtonIncrementSetTemperatureUp.TapEvent += new OnTap(IncrementSetTemperatureUp_TapEvent);
-            ButtonIncrementSetTemperatureDown.TapEvent += new OnTap(IncrementSetTemperatureDown_TapEvent);
-            ButtonModeOff.TapEvent += new OnTap(Mode_Off_TapEvent);
-            ButtonFan.TapEvent += new OnTap(Mode_Fan_TapEvent);
-            ButtonHeat.TapEvent += new OnTap(Mode_Heat_TapEvent);
-            ButtonCool.TapEvent += new OnTap(Mode_Cool_TapEvent);
-            ButtonAuto.TapEvent += new OnTap(Mode_Auto_TapEvent);
-            ButtonUnits.TapEvent += new OnTap(Mode_Units_TapEvent);
-            ButtonSettings.TapEvent += new OnTap(Mode_Settings_TapEvent);
-
-            //Info Boxes
-            settings.TargetTemp.TemperatureSettingChanged += (a, b) => Handle_TempSetting_Change(a, b);
-            Measurements.PrimaryAirTemperature.TemperatureChanged += (a, b) => Handle_CurrentTemp_Change(a, b);
+            SetUpButtons();
 
             // Set up initial values
             this.SetTemperatureValue.Text = this.Settings.TargetTemp.FormattedString();
@@ -77,13 +63,75 @@ namespace Thermostat.TouchUi
 
         }
 
+        private void SetUpButtons()
+        {
+            ButtonIncrementSetTemperatureUp = (Button)Window.GetChildByName("IncrementTemperatureUp");
+            ButtonIncrementSetTemperatureUp.ButtonUp = (Bitmap)Images["ArrowKeyUpUp"];
+            ButtonIncrementSetTemperatureUp.ButtonDown = (Bitmap)Images["ArrowKeyUpDown"];
+
+            ButtonIncrementSetTemperatureDown = (Button)Window.GetChildByName("IncrementTemperatureDown");
+            ButtonIncrementSetTemperatureDown.ButtonUp = (Bitmap)Images["ArrowKeyDownUp"];
+            ButtonIncrementSetTemperatureDown.ButtonDown = (Bitmap)Images["ArrowKeyDownDown"];
+
+            ButtonModeOff = SetUpButton("Off Mode", "PowerOff");
+
+            ButtonFan = SetUpButton("Fan Mode", "Fan");
+            ButtonHeat = SetUpButton("Heat Mode", "Heat");
+            ButtonCool = SetUpButton("AC Mode", "Cool");
+            ButtonAuto = SetUpButton("Auto Mode", "Auto");
+
+            ButtonUnits = (Button)Window.GetChildByName("Units");
+            ButtonSettings = (Button)Window.GetChildByName("Settings");
+
+            ButtonIncrementSetTemperatureUp.TapEvent += new OnTap(IncrementSetTemperatureUp_TapEvent);
+            ButtonIncrementSetTemperatureDown.TapEvent += new OnTap(IncrementSetTemperatureDown_TapEvent);
+            ButtonModeOff.TapEvent += new OnTap(Mode_Off_TapEvent);
+            ButtonFan.TapEvent += new OnTap(Mode_Fan_TapEvent);
+            ButtonHeat.TapEvent += new OnTap(Mode_Heat_TapEvent);
+            ButtonCool.TapEvent += new OnTap(Mode_Cool_TapEvent);
+            ButtonAuto.TapEvent += new OnTap(Mode_Auto_TapEvent);
+            ButtonUnits.TapEvent += new OnTap(Mode_Units_TapEvent);
+            ButtonSettings.TapEvent += new OnTap(Mode_Settings_TapEvent);
+        }
+
+        private Button SetUpButton(string ButtonName, string imagePrefix) {
+            var button = (Button)Window.GetChildByName(ButtonName);
+            button.ButtonUp = (Bitmap)Images[imagePrefix + "Disabled"];
+            button.ButtonDown = (Bitmap)Images[imagePrefix + "Down"];
+            return button;
+        }
+
+        private void ClearButtons()
+        {
+            SetButtonState(this.ButtonAuto, "AutoDisabled", true);
+            SetButtonState(this.ButtonCool, "CoolDisabled", true);
+            SetButtonState(this.ButtonFan, "FanDisabled", true);
+            SetButtonState(this.ButtonHeat, "HeatDisabled", true);
+            SetButtonState(this.ButtonModeOff, "PowerOffDisabled", true);
+        }
+
+        private void SetButtonState(Button button, String buttonImage, bool enabled)
+        {
+            button.ButtonUp = (Bitmap)Images[buttonImage];
+            button.Enabled = enabled;
+            if (enabled == true)
+            {
+                button.Alpha = 255;
+            }
+            else
+            {
+                button.Alpha = 510;
+            }
+            button.Invalidate();
+        }
+
         private void Mode_Settings_TapEvent(object sender)
         {
         }
 
         private void Mode_Units_TapEvent(object sender)
         {
-            if (this.Settings.TemperatureUnits == TemperatureUnits.Farenheit) 
+            if (this.Settings.TemperatureUnits == TemperatureUnits.Farenheit)
             {
                 this.Settings.TemperatureUnits = TemperatureUnits.Celcius;
                 this.Measurements.SetTemperatureUnits(TemperatureUnits.Celcius);
@@ -97,7 +145,7 @@ namespace Thermostat.TouchUi
                 this.ButtonUnits.Text = "F";
                 this.ButtonUnits.Invalidate();
             }
-            else 
+            else
             {
                 this.Settings.TemperatureUnits = TemperatureUnits.Farenheit;
                 this.Measurements.SetTemperatureUnits(TemperatureUnits.Farenheit);
@@ -110,54 +158,35 @@ namespace Thermostat.TouchUi
         {
             this.Settings.Mode = SystemModeEnum.AUTO;
             this.ClearButtons();
-            this.ButtonAuto.Enabled = false;
-            this.ButtonAuto.Invalidate();
+            SetButtonState(this.ButtonAuto, "AutoEnabled", false);
         }
 
         private void Mode_Cool_TapEvent(object sender)
         {
             this.Settings.Mode = SystemModeEnum.HVAC;
             this.ClearButtons();
-            this.ButtonCool.Enabled = false;
-            this.ButtonCool.Invalidate();
+            SetButtonState(this.ButtonCool, "CoolEnabled", false);
         }
 
         private void Mode_Heat_TapEvent(object sender)
         {
             this.Settings.Mode = SystemModeEnum.HEAT;
             this.ClearButtons();
-            this.ButtonHeat.Enabled = false;
-            this.ButtonHeat.Invalidate();
+            SetButtonState(this.ButtonHeat, "HeatEnabled", false);
         }
 
         private void Mode_Fan_TapEvent(object sender)
         {
             this.Settings.Mode = SystemModeEnum.FAN;
             this.ClearButtons();
-            this.ButtonFan.Enabled = false;
-            this.ButtonFan.Invalidate();
+            SetButtonState(this.ButtonFan, "FanEnabled", false);
         }
 
         private void Mode_Off_TapEvent(object sender)
         {
             this.Settings.Mode = SystemModeEnum.OFF;
             this.ClearButtons();
-            this.ButtonModeOff.Enabled = false;
-            this.ButtonModeOff.Invalidate();
-        }
-
-        private void ClearButtons()
-        {
-            this.ButtonAuto.Enabled = true;
-            this.ButtonAuto.Invalidate();
-            this.ButtonCool.Enabled = true;
-            this.ButtonCool.Invalidate();
-            this.ButtonFan.Enabled = true;
-            this.ButtonFan.Invalidate();
-            this.ButtonHeat.Enabled = true;
-            this.ButtonHeat.Invalidate();
-            this.ButtonModeOff.Enabled = true;
-            this.ButtonModeOff.Invalidate();
+            SetButtonState(this.ButtonModeOff, "PowerOffEnabled", false);
         }
 
         private void Handle_TempSetting_Change(object sender, Thermostat.Core.TemperatureSetting.TemperatureSettingChangedArgs e)
@@ -179,7 +208,7 @@ namespace Thermostat.TouchUi
 
         private void IncrementSetTemperatureDown_TapEvent(object sender)
         {
-            this.Settings.TargetTemp.DecrementTemperature();     
+            this.Settings.TargetTemp.DecrementTemperature();
         }
     }
 }

@@ -33,6 +33,32 @@ namespace Thermostat
         {
             return ((string)(Microsoft.SPOT.ResourceUtility.GetObject(ResourceManager, id)));
         }
+        internal static byte[] GetBytes(Resources.BinaryResources id)
+        {
+            return ((byte[])(Microsoft.SPOT.ResourceUtility.GetObject(ResourceManager, id)));
+        }
+        [System.SerializableAttribute()]
+        internal enum BinaryResources : short
+        {
+            AutoDown = -25572,
+            BackGround = -24726,
+            ArrowKeyDown = -14715,
+            CoolDown = -13717,
+            PowerOffDown = -11541,
+            HeatDisabled = -4803,
+            CoolEnabled = -124,
+            PowerOffEnabled = 49,
+            FanDown = 171,
+            ArrowKeyUp = 1218,
+            CoolDisabled = 2160,
+            AutoEnabled = 9956,
+            HeatEnabled = 14594,
+            FanDisabled = 16231,
+            AutoDisabled = 16580,
+            FanEnabled = 23204,
+            PowerOffDisabled = 23496,
+            HeatDown = 24537,
+        }
         [System.SerializableAttribute()]
         internal enum FontResources : short
         {

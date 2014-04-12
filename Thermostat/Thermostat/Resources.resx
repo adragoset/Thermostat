@@ -142,4 +142,58 @@
   &lt;/Window&gt;
 &lt;/Glide&gt;</value>
   </data>
+  <data name="ArrowKeyDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\ArrowKeyDown.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="ArrowKeyUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\ArrowKeyUp.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="AutoDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\AutoDisabled.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="AutoDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\AutoDown.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="AutoEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\AutoEnabled.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="BackGround" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\BackGround.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="CoolDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\CoolDisabled.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="CoolDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\CoolDown.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="CoolEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\CoolEnabled.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="FanDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\FanDisabled.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="FanDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\FanDown.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="FanEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\FanEnabled.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="HeatDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\HeatDisabled.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="HeatDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\HeatDown.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="HeatEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\HeatEnabled.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="PowerOffDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PowerOffUp.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="PowerOffDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PowerOffDown.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="PowerOffEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\PowerOffDisabled.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
 </root>

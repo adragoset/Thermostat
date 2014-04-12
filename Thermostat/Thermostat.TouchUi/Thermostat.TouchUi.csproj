@@ -40,8 +40,9 @@
   <ItemGroup>
     <Reference Include="Gadgeteer, Version=2.42.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="GHI.Glide, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.SPOT.Native">
-    </Reference>
+    <Reference Include="Microsoft.SPOT.Graphics" />
+    <Reference Include="Microsoft.SPOT.Native" />
+    <Reference Include="Microsoft.SPOT.Net" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Display_CP7\Software\Display_CP7\Display_CP7_42\Display_CP7_42.csproj">

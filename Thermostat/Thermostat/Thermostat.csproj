@@ -116,4 +116,67 @@
       <Name>Thermostat.TouchUi</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BlankButton.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BackGround.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PowerOffUp.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PowerOffDisabled.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PowerOffDown.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BackGround.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HeatEnabled.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HeatDown.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HeatDisabled.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CoolDisabled.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CoolDown.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CoolEnabled.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FanDisabled.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FanDown.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FanEnabled.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AutoDisabled.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AutoDown.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AutoEnabled.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ArrowKeyDown.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ArrowKeyUp.gif" />
+  </ItemGroup>
 </Project>
