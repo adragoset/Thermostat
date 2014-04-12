@@ -127,23 +127,23 @@
   <data name="ControlScreen" xml:space="preserve">
     <value>&lt;Glide Version="1.0.7"&gt;
   &lt;Window Name="instance115" Width="800" Height="480" BackColor="FFFFFF"&gt;
-    &lt;Button Name="IncrementTemperatureUp" X="145" Y="365" Width="125" Height="70" Alpha="255" Text="v" Font="9" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
-    &lt;Button Name="IncrementTemperatureDown" X="20" Y="365" Width="125" Height="70" Alpha="255" Text="^" Font="9" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
-    &lt;TextBox Name="SetTemperature" X="20" Y="115" Width="250" Height="250" Alpha="255" Text="" TextAlign="Left" Font="9" FontColor="000000"/&gt;
-    &lt;TextBox Name="CurrentTemperatureValue" X="280" Y="115" Width="350" Height="250" Alpha="255" Text="" TextAlign="Left" Font="9" FontColor="000000"/&gt;
-    &lt;Button Name="Off Mode" X="280" Y="365" Width="70" Height="70" Alpha="255" Text="O" Font="9" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
-    &lt;Button Name="Fan Mode" X="560" Y="365" Width="70" Height="70" Alpha="255" Text="F" Font="9" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
-    &lt;Button Name="AC Mode" X="350" Y="365" Width="70" Height="70" Alpha="255" Text="C" Font="9" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
-    &lt;Button Name="Heat Mode" X="420" Y="365" Width="70" Height="70" Alpha="255" Text="H" Font="9" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
-    &lt;Button Name="Auto Mode" X="490" Y="365" Width="70" Height="70" Alpha="255" Text="A" Font="9" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
-    &lt;TextBox Name="TimeDisplay" X="20" Y="20" Width="350" Height="75" Alpha="255" Text="" TextAlign="Left" Font="4" FontColor="000000"/&gt;
+    &lt;Button Name="IncrementTemperatureUp" X="145" Y="325" Width="125" Height="70" Alpha="255" Text="v" Font="9" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
+    &lt;Button Name="IncrementTemperatureDown" X="20" Y="325" Width="125" Height="70" Alpha="255" Text="^" Font="9" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
+    &lt;Button Name="Off Mode" X="280" Y="325" Width="70" Height="70" Alpha="255" Text="O" Font="9" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
+    &lt;Button Name="Fan Mode" X="560" Y="325" Width="70" Height="70" Alpha="255" Text="F" Font="9" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
+    &lt;Button Name="AC Mode" X="350" Y="325" Width="70" Height="70" Alpha="255" Text="C" Font="9" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
+    &lt;Button Name="Heat Mode" X="420" Y="325" Width="70" Height="70" Alpha="255" Text="H" Font="9" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
+    &lt;Button Name="Auto Mode" X="490" Y="325" Width="70" Height="70" Alpha="255" Text="A" Font="9" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
     &lt;Button Name="Settings" X="720" Y="0" Width="80" Height="80" Alpha="255" Text="Settings" Font="4" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
-    &lt;Button Name="Units" X="630" Y="365" Width="70" Height="70" Alpha="255" Text="U" Font="9" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
+    &lt;Button Name="Units" X="635" Y="215" Width="32" Height="32" Alpha="255" Text="U" Font="0" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
+    &lt;TextBlock Name="SetTemperature" X="20" Y="215" Width="250" Height="100" Alpha="255" Text="TextBlock" TextAlign="Center" TextVerticalAlign="Middle" Font="4" FontColor="5FFB17" BackColor="2C3539" ShowBackColor="True"/&gt;
+    &lt;TextBlock Name="CurrentTemperatureValue" X="280" Y="215" Width="350" Height="100" Alpha="255" Text="TextBlock" TextAlign="Center" TextVerticalAlign="Middle" Font="4" FontColor="5FFB17" BackColor="2C3539" ShowBackColor="True"/&gt;
+    &lt;TextBlock Name="MinTemp" X="22" Y="170" Width="122" Height="40" Alpha="255" Text="TextBlock" TextAlign="Center" TextVerticalAlign="Middle" Font="7" FontColor="5FFB17" BackColor="2C3539" ShowBackColor="True"/&gt;
+    &lt;TextBlock Name="MaxTemp" X="148" Y="170" Width="122" Height="40" Alpha="255" Text="TextBlock" TextAlign="Center" TextVerticalAlign="Middle" Font="7" FontColor="5FFB17" BackColor="2C3539" ShowBackColor="True"/&gt;
+    &lt;TextBlock Name="TimeDisplay" X="20" Y="20" Width="400" Height="100" Alpha="255" Text="TextBlock" TextAlign="Center" TextVerticalAlign="Middle" Font="6" FontColor="5FFB17" BackColor="2C3539" ShowBackColor="True"/&gt;
+    &lt;TextBlock Name="Humidity" X="395" Y="170" Width="120" Height="40" Alpha="255" Text="TextBlock" TextAlign="Center" TextVerticalAlign="Middle" Font="7" FontColor="5FFB17" BackColor="2C3539" ShowBackColor="True"/&gt;
   &lt;/Window&gt;
 &lt;/Glide&gt;</value>
-  </data>
-  <data name="ArrowKeyDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\ArrowKeyDown.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="ArrowKeyUp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\ArrowKeyUp.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
@@ -151,10 +151,10 @@
   <data name="AutoDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\AutoDisabled.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="AutoDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="AutoEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\AutoDown.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="AutoEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="AutoDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\AutoEnabled.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="BackGround" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -163,37 +163,43 @@
   <data name="CoolDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\CoolDisabled.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="CoolDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="CoolEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\CoolDown.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="CoolEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="CoolDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\CoolEnabled.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="FanDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\FanDisabled.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="FanDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="FanEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\FanDown.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="FanEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="FanDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\FanEnabled.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="HeatDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\HeatDisabled.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="HeatDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="HeatEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\HeatDown.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="HeatEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="HeatDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\HeatEnabled.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="PowerOffDisabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\PowerOffUp.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="PowerOffDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="PowerOffEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\PowerOffDown.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="PowerOffEnabled" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="PowerOffDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\PowerOffDisabled.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="Arial72" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Arial72.tinyfnt;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="ArrowKeyDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\ArrowKeyDown.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

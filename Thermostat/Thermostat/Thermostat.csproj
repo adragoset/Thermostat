@@ -99,6 +99,7 @@
     <None Include="Program.gadgeteer.diagram">
       <DependentUpon>Program.gadgeteer</DependentUpon>
     </None>
+    <None Include="Resources\Arial72.tinyfnt" />
     <None Include="Resources\NinaB.tinyfnt" />
     <None Include="Resources\small.tinyfnt" />
   </ItemGroup>
@@ -174,9 +175,9 @@
     <None Include="Resources\AutoEnabled.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ArrowKeyDown.gif" />
+    <None Include="Resources\ArrowKeyUp.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ArrowKeyUp.gif" />
+    <None Include="Resources\ArrowKeyDown.gif" />
   </ItemGroup>
 </Project>

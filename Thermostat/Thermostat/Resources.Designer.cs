@@ -62,6 +62,7 @@ namespace Thermostat
         [System.SerializableAttribute()]
         internal enum FontResources : short
         {
+            Arial72 = -19034,
             small = 13070,
             NinaB = 18060,
         }

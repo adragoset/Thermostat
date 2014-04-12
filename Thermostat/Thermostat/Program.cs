@@ -29,6 +29,7 @@ namespace Thermostat
         private ThermostatUi Ui { get; set; }
         private Hashtable UiScreens { get; set; }
         private Hashtable Images { get; set; }
+        private Hashtable Fonts { get; set; }
 
         void ProgramStarted()
         {
@@ -53,9 +54,10 @@ namespace Thermostat
             this.ControlLoop = new HvacControl(Heat, Cool, Fan, SystemSettings, SystemState);
             this.UiScreens = new Hashtable();
             this.Images = new Hashtable();
+            this.Fonts = new Hashtable();
             this.LoadResources();
 
-            this.Ui = new ThermostatUi(Display, UiScreens, Images, this.SystemSettings, this.SystemState);
+            this.Ui = new ThermostatUi(Display, UiScreens, Images, Fonts, this.SystemSettings, this.SystemState);
 
             // Create a timer
             LoggingTimer = new GT.Timer(15000);
@@ -103,6 +105,9 @@ namespace Thermostat
             this.Images.Add("ArrowKeyDownUp", up1);
 
             this.Images.Add("BackGround", new Bitmap(Resources.GetBytes(Resources.BinaryResources.BackGround), Bitmap.BitmapImageType.Gif));
+
+            //fonts 
+            this.Fonts.Add("Arial72", Resources.GetFont(Resources.FontResources.Arial72));
         }
 
         private void timer_Tick(GT.Timer timer)

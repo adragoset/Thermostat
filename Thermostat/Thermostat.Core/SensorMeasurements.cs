@@ -1,4 +1,7 @@
 using Gadgeteer.Modules.Seeed;
+using Microsoft.SPOT;
+using System;
+using GT = Gadgeteer;
 
 namespace Thermostat.Core
 {
@@ -13,6 +16,44 @@ namespace Thermostat.Core
 
         private Gadgeteer.Modules.Seeed.TemperatureHumidity TempHumiditySensor;
 
+        public static object Date_Lock = new object();
+        private DateTime dateNow { get; set; }
+        public DateTime DateNow
+        {
+            get
+            {
+                lock (Date_Lock)
+                {
+                    return dateNow;
+                }
+                
+            }
+            set
+            {
+                lock (Date_Lock)
+                {
+                    dateNow = value;
+                }
+                ClockChangedEvent(this.DateNow, new ClockChangedArgs(value));
+            }
+        }
+
+        private GT.Timer ClockTimer { get; set; }
+
+        public delegate void ClockChangedDelegate(object sender, ClockChangedArgs e);
+        public event ClockChangedDelegate ClockChangedEvent;
+        public class ClockChangedArgs : EventArgs
+        {
+            public DateTime Now { get; private set; }
+
+            public ClockChangedArgs(DateTime e)
+            {
+                this.Now = e;
+            }
+
+
+        }
+
         public SensorMeasurements(Gadgeteer.Modules.Seeed.TemperatureHumidity tempSensor)
         {
             PrimaryAirTemperature = new Temperature(0);
@@ -21,6 +62,16 @@ namespace Thermostat.Core
             TempHumiditySensor = tempSensor;
             TempHumiditySensor.MeasurementComplete += new TemperatureHumidity.MeasurementCompleteEventHandler(TemperatureMeasuermentComplete);
             TempHumiditySensor.StartContinuousMeasurements();
+
+            // Create a timer
+            ClockTimer = new GT.Timer(500);
+            ClockTimer.Tick += new GT.Timer.TickEventHandler(Clock_Tick);
+            ClockTimer.Start();
+        }
+
+        private void Clock_Tick(GT.Timer timer)
+        {
+            this.DateNow = DateTime.Now;
         }
 
         public void SetTemperatureUnits(TemperatureUnits units)

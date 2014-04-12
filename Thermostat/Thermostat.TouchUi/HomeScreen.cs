@@ -30,11 +30,14 @@ namespace Thermostat.TouchUi
         public Button ButtonUnits { get; private set; }
         public Button ButtonSettings { get; private set; }
 
-        public TextBox SetTemperatureValue { get; private set; }
-        public TextBox CurrentTemperatureValue { get; private set; }
-        public TextBox DateTime { get; private set; }
+        public TextBlock SetTemperatureValue { get; private set; }
+        public TextBlock CurrentTemperatureValue { get; private set; }
+        public TextBlock DateTime { get; private set; }
+        public TextBlock MaxTemp { get; private set; }
+        public TextBlock MinTemp { get; private set; }
+        public TextBlock Humidity { get; private set; }
 
-        public HomeScreen(Settings settings, SensorMeasurements measurements, Hashtable images, Hashtable screens)
+        public HomeScreen(Settings settings, SensorMeasurements measurements, Hashtable images, Hashtable screens, Hashtable fonts)
         {
             Settings = settings;
             Measurements = measurements;
@@ -46,21 +49,45 @@ namespace Thermostat.TouchUi
             Window.BackImage = (Bitmap)images["BackGround"];
 
             //Info Boxes 
-            SetTemperatureValue = (TextBox)Window.GetChildByName("SetTemperature");
+            SetTemperatureValue = (TextBlock)Window.GetChildByName("SetTemperature");
+            SetTemperatureValue.Font = (Font)fonts["Arial72"];
             settings.TargetTemp.TemperatureSettingChanged += (a, b) => Handle_TempSetting_Change(a, b);
-            CurrentTemperatureValue = (TextBox)Window.GetChildByName("CurrentTemperatureValue");
+            CurrentTemperatureValue = (TextBlock)Window.GetChildByName("CurrentTemperatureValue");
+            CurrentTemperatureValue.Font = (Font)fonts["Arial72"];
             Measurements.PrimaryAirTemperature.TemperatureChanged += (a, b) => Handle_CurrentTemp_Change(a, b);
-            DateTime = (TextBox)Window.GetChildByName("TimeDisplay");
+            DateTime = (TextBlock)Window.GetChildByName("TimeDisplay");
+            Measurements.ClockChangedEvent += new Thermostat.Core.SensorMeasurements.ClockChangedDelegate(Handle_Clock_Changed);
+            MaxTemp = (TextBlock)Window.GetChildByName("MaxTemp");
+            MinTemp = (TextBlock)Window.GetChildByName("MinTemp");
+            Humidity = (TextBlock)Window.GetChildByName("Humidity");
 
             SetUpButtons();
 
             // Set up initial values
+            SetInitialMeasurementValues();
+
+        }
+
+        private void Handle_Clock_Changed(object sender, SensorMeasurements.ClockChangedArgs e)
+        {
+            DateTime.Text = e.Now.ToString();
+            DateTime.Invalidate();
+        }
+
+        private void SetInitialMeasurementValues()
+        {
             this.SetTemperatureValue.Text = this.Settings.TargetTemp.FormattedString();
             this.SetTemperatureValue.Invalidate();
 
             this.CurrentTemperatureValue.Text = this.Measurements.PrimaryAirTemperature.FormattedString();
             this.CurrentTemperatureValue.Invalidate();
 
+            UpdateMinMaxTemp();
+
+            SetButtonState(ButtonModeOff, "PowerOffEnabled", false);
+
+            Humidity.Text = Measurements.PrimaryAirHumidity.FormattedString();
+            Humidity.Invalidate();
         }
 
         private void SetUpButtons()
@@ -199,6 +226,32 @@ namespace Thermostat.TouchUi
         {
             this.CurrentTemperatureValue.Text = e.TemperatureString;
             this.CurrentTemperatureValue.Invalidate();
+
+            Humidity.Text = Measurements.PrimaryAirHumidity.FormattedString();
+            Humidity.Invalidate();
+
+            UpdateMinMaxTemp();
+        }
+
+        private void UpdateMinMaxTemp()
+        {
+            var temp = this.Settings.TargetTemp.Temperature;
+            var deadZone = this.Settings.DeadZone;
+
+            if (this.Settings.Mode == SystemModeEnum.AUTO)
+            {
+                this.MinTemp.Text = "Min: " + this.Settings.AutoMinTemp.ToString();
+                this.MaxTemp.Text = "Max: " + this.Settings.AutoMaxTemp.ToString();
+                this.MinTemp.Invalidate();
+                this.MaxTemp.Invalidate();
+            }
+            else
+            {
+                this.MinTemp.Text = "Min: " + (temp - deadZone).ToString();
+                this.MaxTemp.Text = "Max: " + (temp + deadZone).ToString();
+                this.MinTemp.Invalidate();
+                this.MaxTemp.Invalidate();
+            }
         }
 
         private void IncrementSetTemperatureUp_TapEvent(object sender)
@@ -210,5 +263,6 @@ namespace Thermostat.TouchUi
         {
             this.Settings.TargetTemp.DecrementTemperature();
         }
+
     }
 }

@@ -18,11 +18,11 @@ namespace Thermostat.TouchUi
 
         private TouchInitialization TouchIni;
 
-        public ThermostatUi(Display_CP7 Display, Hashtable screens, Hashtable images, Settings systemSettings, SensorMeasurements measurements)
+        public ThermostatUi(Display_CP7 Display, Hashtable screens, Hashtable images, Hashtable fonts, Settings systemSettings, SensorMeasurements measurements)
         {
             // TODO: Complete member initialization
             this.Display = Display;
-            this.HomeScreen = new HomeScreen(systemSettings, measurements, images, screens);
+            this.HomeScreen = new HomeScreen(systemSettings, measurements, images, screens, fonts);
 
             // Resize any loaded Window to the LCD's size.
             Glide.FitToScreen = true;
