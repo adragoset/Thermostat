@@ -239,7 +239,7 @@ namespace Thermostat.Core
 
         private void SwitchHeatOn()
         {
-            if (this.HeatOn == false && this.FanOn == true)
+            if (this.HeatOn == false && !this.CompressorOn && this.FanOn == true)
             {
                 this.HeatOn = true;
                 this.Heat.TurnOn();
@@ -273,7 +273,7 @@ namespace Thermostat.Core
 
         private void SwitchCompressorOn()
         {
-            if (!this.CompressorStartDelay  && !this.CompressorOn && this.FanOn == true)
+            if (!this.CompressorStartDelay  && !this.CompressorOn && !this.HeatOn && this.FanOn == true)
             {
                 this.CompressorOn = true;
                 this.Cool.TurnOn();

@@ -61,6 +61,7 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="GHI.Glide, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="GHI.Premium.Hardware, Version=4.2.11.1, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="GHI.Premium.Net, Version=4.2.11.1, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>

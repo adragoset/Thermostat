@@ -196,7 +196,7 @@ namespace Thermostat.Core
         {
             get
             {
-                return (int)TargetTemp.Temperature + temperatureDifferential;
+                return (int)TargetTemp.Temperature - temperatureDifferential;
             }
         }
         
