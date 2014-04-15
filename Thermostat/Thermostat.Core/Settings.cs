@@ -199,6 +199,8 @@ namespace Thermostat.Core
                 return (int)TargetTemp.Temperature - temperatureDifferential;
             }
         }
+
+        public bool GuiLoggedIn { get; set; }
         
         public Settings()
         {

@@ -18,12 +18,15 @@ namespace Thermostat.TouchUi
 
         private TouchInitialization TouchIni;
 
+        private Settings Settings;
+
         public ThermostatUi(Display_CP7 Display, Hashtable screens, Hashtable images, Hashtable fonts, Settings systemSettings, SensorMeasurements measurements)
         {
             this.Display = Display;
+            this.Settings = systemSettings;
+            this.Settings.GuiLoggedIn = true;
             Glide.FitToScreen = true;
             this.TouchIni = new TouchInitialization(Display);
-
             InitializeScreens(screens, images, fonts, systemSettings, measurements);
             //set the current window
             Glide.MainWindow = ((IScreen)Screens["HomeScreen"]).Window;
@@ -32,11 +35,11 @@ namespace Thermostat.TouchUi
         private void InitializeScreens(Hashtable screens, Hashtable images, Hashtable fonts, Settings systemSettings, SensorMeasurements measurements)
         {
             var homeScreen = new HomeScreen(systemSettings, measurements, images, screens, fonts);
-            SetupScreen(homeScreen,"HomeScreen");
+            SetupScreen(homeScreen, "HomeScreen");
 
             var settingsScreen = new SettingsScreen(systemSettings, measurements, images, screens, fonts);
             SetupScreen(settingsScreen, "SettingsScreen");
-            
+
         }
 
         private void SetupScreen(IScreen screen, string name)
@@ -45,8 +48,18 @@ namespace Thermostat.TouchUi
             Screens.Add(name, screen);
         }
 
-        private void Handel_Screen_Changed_Event(object sender, UpdateScreenArgs args) {
-            Glide.MainWindow = ((IScreen)Screens[args.Name]).Window;
+        private void Handel_Screen_Changed_Event(object sender, UpdateScreenArgs args)
+        {
+            if (args.Name == "HomeScreen" || this.Settings.GuiLoggedIn)
+            {
+                Glide.MainWindow = ((IScreen)Screens[args.Name]).Window;
+            }
+            else
+            {
+                Glide.MainWindow = ((IScreen)Screens["LogIn"]).Window;
+            }
+
+            Glide.MainWindow.Invalidate();
         }
 
     }

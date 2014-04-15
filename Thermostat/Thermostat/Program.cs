@@ -21,8 +21,11 @@ using Thermostat.TouchUi;
 
 namespace Thermostat
 {
+
     public partial class Program
     {
+        public const string Encryption_Key = "1CdQymMKb42I5Ptf6xSZPFaEjZYiT7C4";
+
         private SensorMeasurements SystemState { get; set; }
         private Settings SystemSettings { get; set; }
         private HvacControl ControlLoop { get; set; }
