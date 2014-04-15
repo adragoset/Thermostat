@@ -141,6 +141,8 @@ namespace Thermostat.Core
         {
             this.CurrentMode = SystemModeEnum.HEAT;
 
+            SwitchFanOff();
+
             if ((this.SystemSettings.TargetTemp.Temperature + this.SystemSettings.DeadZone - this.SystemSettings.HeatAnticipation) <= this.SystemState.PrimaryAirTemperature.GetTemperature() && this.HeatOn == true)
             {
                 this.SwitchHeatOff();
@@ -157,6 +159,8 @@ namespace Thermostat.Core
         private void RunHvacCycle()
         {
             this.CurrentMode = SystemModeEnum.HVAC;
+
+            SwitchFanOff();
 
             if ((this.SystemSettings.TargetTemp.Temperature - this.SystemSettings.DeadZone) >= this.SystemState.PrimaryAirTemperature.GetTemperature() && this.CompressorOn != false)
             {

@@ -11,7 +11,7 @@ using Thermostat.Core;
 
 namespace Thermostat.TouchUi
 {
-    public class HomeScreen
+    public class HomeScreen: IScreen
     {
         private Settings Settings { get; set; }
         private SensorMeasurements Measurements { get; set; }
@@ -36,6 +36,8 @@ namespace Thermostat.TouchUi
         public TextBlock MaxTemp { get; private set; }
         public TextBlock MinTemp { get; private set; }
         public TextBlock Humidity { get; private set; }
+
+        public event UpdateScreenEventHandler StatusUpdated;
 
         public HomeScreen(Settings settings, SensorMeasurements measurements, Hashtable images, Hashtable screens, Hashtable fonts)
         {
