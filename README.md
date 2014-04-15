@@ -7,7 +7,7 @@ The project is set up for the following hardware:
 
 Current-
 
-Controller:  G400-S SoM (FEZ Raptor Mainboard Part # RAPTR-GM-499
+Controller:  G400-S SoM (FEZ Raptor Mainboard) Part # RAPTR-GM-499
 
 Temperature&Humidity Sensor: Part # STHSN-GM-344
 
