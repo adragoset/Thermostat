@@ -19,7 +19,7 @@ Planned-
 
 Wireless: WiFi RS21 Module Part # WFR21-GM-282
 
-Barometer: Part# SBRMR-GM-321
+Barometer: Part # SBRMR-GM-321
 
 Gas Sensor: GasSense Module Part # GASSN-GM-393 MQ7
 
@@ -27,9 +27,9 @@ Gas Sensor: GasSense Module Part # GASSN-GM-393 MQ2
 
 Real Time Clock: SD2403 Real-Time Clock Module
 
-Micro-Sd-Reader: Part# USDCR-GM-359
+Micro-Sd-Reader: Part # USDCR-GM-359
 
-Hub Ap-5: Part# # HUBAP-GM-471
+Hub Ap-5: Part # HUBAP-GM-471
 
 
 Controler and modules available from GHI electronics - https://www.ghielectronics.com
