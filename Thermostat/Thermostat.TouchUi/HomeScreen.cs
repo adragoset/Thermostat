@@ -18,6 +18,7 @@ namespace Thermostat.TouchUi
 
         private Hashtable Images { get; set; }
         private Hashtable Screens { get; set; }
+        private Hashtable Fonts { get; set; }
 
         public Window Window { get; private set; }
         public Button ButtonIncrementSetTemperatureDown { get; private set; }
@@ -45,35 +46,78 @@ namespace Thermostat.TouchUi
             Measurements = measurements;
             Images = images;
             Screens = screens;
+            Fonts = fonts;
 
             // Load the Window XML string.
-            Window = GlideLoader.LoadWindow((String)screens["ControlScreen"]);
+            Window = GlideLoader.LoadWindow((String)screens["HomeScreen"]);
             Window.BackImage = (Bitmap)images["BackGround"];
 
-            //Info Boxes 
-            SetTemperatureValue = (TextBlock)Window.GetChildByName("SetTemperature");
-            SetTemperatureValue.Font = (Font)fonts["Arial72"];
-            settings.TargetTemp.TemperatureSettingChanged += (a, b) => Handle_TempSetting_Change(a, b);
-            CurrentTemperatureValue = (TextBlock)Window.GetChildByName("CurrentTemperatureValue");
-            CurrentTemperatureValue.Font = (Font)fonts["Arial72"];
-            Measurements.PrimaryAirTemperature.TemperatureChanged += (a, b) => Handle_CurrentTemp_Change(a, b);
-            DateTime = (TextBlock)Window.GetChildByName("TimeDisplay");
-            Measurements.ClockChangedEvent += new Thermostat.Core.SensorMeasurements.ClockChangedDelegate(Handle_Clock_Changed);
-            MaxTemp = (TextBlock)Window.GetChildByName("MaxTemp");
-            MinTemp = (TextBlock)Window.GetChildByName("MinTemp");
-            Humidity = (TextBlock)Window.GetChildByName("Humidity");
+            SetUpInfoBoxes();
 
             SetUpButtons();
 
             // Set up initial values
             SetInitialMeasurementValues();
-
         }
 
-        private void Handle_Clock_Changed(object sender, SensorMeasurements.ClockChangedArgs e)
+        private void SetUpInfoBoxes()
         {
-            DateTime.Text = e.Now.ToString();
-            DateTime.Invalidate();
+            SetTemperatureValue = (TextBlock)Window.GetChildByName("SetTemperature");
+            SetTemperatureValue.Font = (Font)Fonts["Arial72"];
+            CurrentTemperatureValue = (TextBlock)Window.GetChildByName("CurrentTemperatureValue");
+            CurrentTemperatureValue.Font = (Font)Fonts["Arial72"];
+            DateTime = (TextBlock)Window.GetChildByName("TimeDisplay");
+            MaxTemp = (TextBlock)Window.GetChildByName("MaxTemp");
+            MinTemp = (TextBlock)Window.GetChildByName("MinTemp");
+            Humidity = (TextBlock)Window.GetChildByName("Humidity");
+            EnableEventListeners();
+        }
+
+        public void Open() {
+            EnableEventListeners();
+            EnableScreenTouchListeners();
+        }
+
+        public void Close() {
+            DisableEventListners();
+            DisableSceenTouchListeners();
+        }
+
+        private void DisableEventListners()
+        {
+            Settings.TargetTemp.TemperatureSettingChanged -= Handle_TempSetting_Change;
+            Measurements.PrimaryAirTemperature.TemperatureChanged -= Handle_CurrentTemp_Change;
+            Measurements.ClockChangedEvent -= Handle_Clock_Changed;
+        }
+
+        private void DisableSceenTouchListeners() {
+            ButtonIncrementSetTemperatureUp.TapEvent -= IncrementSetTemperatureUp_TapEvent;
+            ButtonIncrementSetTemperatureDown.TapEvent -= IncrementSetTemperatureDown_TapEvent;
+            ButtonModeOff.TapEvent -= Mode_Off_TapEvent;
+            ButtonFan.TapEvent -= Mode_Fan_TapEvent;
+            ButtonHeat.TapEvent -= Mode_Heat_TapEvent;
+            ButtonCool.TapEvent -= Mode_Cool_TapEvent;
+            ButtonAuto.TapEvent -= Mode_Auto_TapEvent;
+            ButtonUnits.TapEvent -= Mode_Units_TapEvent;
+            ButtonSettings.TapEvent -= Mode_Settings_TapEvent;
+        }
+
+        private void EnableEventListeners() {
+            Measurements.ClockChangedEvent += new Thermostat.Core.SensorMeasurements.ClockChangedDelegate(Handle_Clock_Changed);
+            Measurements.PrimaryAirTemperature.TemperatureChanged += (a, b) => Handle_CurrentTemp_Change(a, b);
+            Settings.TargetTemp.TemperatureSettingChanged += (a, b) => Handle_TempSetting_Change(a, b);
+        }
+
+        private void EnableScreenTouchListeners() {
+            ButtonIncrementSetTemperatureUp.TapEvent += new OnTap(IncrementSetTemperatureUp_TapEvent);
+            ButtonIncrementSetTemperatureDown.TapEvent += new OnTap(IncrementSetTemperatureDown_TapEvent);
+            ButtonModeOff.TapEvent += new OnTap(Mode_Off_TapEvent);
+            ButtonFan.TapEvent += new OnTap(Mode_Fan_TapEvent);
+            ButtonHeat.TapEvent += new OnTap(Mode_Heat_TapEvent);
+            ButtonCool.TapEvent += new OnTap(Mode_Cool_TapEvent);
+            ButtonAuto.TapEvent += new OnTap(Mode_Auto_TapEvent);
+            ButtonUnits.TapEvent += new OnTap(Mode_Units_TapEvent);
+            ButtonSettings.TapEvent += new OnTap(Mode_Settings_TapEvent);
         }
 
         private void SetInitialMeasurementValues()
@@ -112,18 +156,11 @@ namespace Thermostat.TouchUi
             ButtonUnits = (Button)Window.GetChildByName("Units");
             ButtonSettings = (Button)Window.GetChildByName("Settings");
 
-            ButtonIncrementSetTemperatureUp.TapEvent += new OnTap(IncrementSetTemperatureUp_TapEvent);
-            ButtonIncrementSetTemperatureDown.TapEvent += new OnTap(IncrementSetTemperatureDown_TapEvent);
-            ButtonModeOff.TapEvent += new OnTap(Mode_Off_TapEvent);
-            ButtonFan.TapEvent += new OnTap(Mode_Fan_TapEvent);
-            ButtonHeat.TapEvent += new OnTap(Mode_Heat_TapEvent);
-            ButtonCool.TapEvent += new OnTap(Mode_Cool_TapEvent);
-            ButtonAuto.TapEvent += new OnTap(Mode_Auto_TapEvent);
-            ButtonUnits.TapEvent += new OnTap(Mode_Units_TapEvent);
-            ButtonSettings.TapEvent += new OnTap(Mode_Settings_TapEvent);
+            EnableScreenTouchListeners();
         }
 
-        private Button SetUpButton(string ButtonName, string imagePrefix) {
+        private Button SetUpButton(string ButtonName, string imagePrefix)
+        {
             var button = (Button)Window.GetChildByName(ButtonName);
             button.ButtonUp = (Bitmap)Images[imagePrefix + "Disabled"];
             button.ButtonDown = (Bitmap)Images[imagePrefix + "Down"];
@@ -156,6 +193,11 @@ namespace Thermostat.TouchUi
 
         private void Mode_Settings_TapEvent(object sender)
         {
+            var handler = StatusUpdated;
+            if (handler != null)
+            {
+                handler(sender, new UpdateScreenArgs("SettingsScreen", this));
+            }
         }
 
         private void Mode_Units_TapEvent(object sender)
@@ -222,6 +264,7 @@ namespace Thermostat.TouchUi
         {
             this.SetTemperatureValue.Text = e.TemperatureString;
             this.SetTemperatureValue.Invalidate();
+            UpdateMinMaxTemp();
         }
 
         private void Handle_CurrentTemp_Change(object sender, Temperature.TemperatureChangedArgs e)
@@ -231,8 +274,17 @@ namespace Thermostat.TouchUi
 
             Humidity.Text = Measurements.PrimaryAirHumidity.FormattedString();
             Humidity.Invalidate();
+        }
 
-            UpdateMinMaxTemp();
+        private void Handle_Clock_Changed(object sender, SensorMeasurements.ClockChangedArgs e)
+        {
+            DateTime.Text = e.Now.ToString();
+            DateTime.Invalidate();
+        }
+
+        private void IncrementSetTemperatureUp_TapEvent(object sender)
+        {
+            this.Settings.TargetTemp.IncrementTemperature();
         }
 
         private void UpdateMinMaxTemp()
@@ -254,11 +306,6 @@ namespace Thermostat.TouchUi
                 this.MinTemp.Invalidate();
                 this.MaxTemp.Invalidate();
             }
-        }
-
-        private void IncrementSetTemperatureUp_TapEvent(object sender)
-        {
-            this.Settings.TargetTemp.IncrementTemperature();
         }
 
         private void IncrementSetTemperatureDown_TapEvent(object sender)

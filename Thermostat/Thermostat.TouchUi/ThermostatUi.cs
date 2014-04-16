@@ -50,14 +50,21 @@ namespace Thermostat.TouchUi
 
         private void Handel_Screen_Changed_Event(object sender, UpdateScreenArgs args)
         {
+            var newWindow = ((IScreen)Screens[args.Name]);
+            var oldWindow = ((IScreen)args.Window);
+
+            oldWindow.Close();
+
             if (args.Name == "HomeScreen" || this.Settings.GuiLoggedIn)
             {
-                Glide.MainWindow = ((IScreen)Screens[args.Name]).Window;
+                Glide.MainWindow = newWindow.Window;
             }
             else
             {
                 Glide.MainWindow = ((IScreen)Screens["LogIn"]).Window;
             }
+
+            newWindow.Open();
 
             Glide.MainWindow.Invalidate();
         }

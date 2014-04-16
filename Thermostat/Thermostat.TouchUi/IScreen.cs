@@ -9,10 +9,12 @@ namespace Thermostat.TouchUi
     public class UpdateScreenArgs : EventArgs
     {
         public string Name { get; private set; }
+        public IScreen Window { get; private set; }
 
-        public UpdateScreenArgs(string e)
+        public UpdateScreenArgs(string e, IScreen window)
         {
             this.Name = e;
+            this.Window = window;
         }
 
 
@@ -23,6 +25,10 @@ namespace Thermostat.TouchUi
         Window Window { get; }
 
         event UpdateScreenEventHandler StatusUpdated;
+
+        void Open();
+
+        void Close();
 
     }
 }

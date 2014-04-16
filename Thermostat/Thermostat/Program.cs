@@ -73,7 +73,9 @@ namespace Thermostat
         private void LoadResources()
         {
             //Screens
-            this.UiScreens.Add("ControlScreen", Resources.GetString(Resources.StringResources.ControlScreen));
+            this.UiScreens.Add("HomeScreen", Resources.GetString(Resources.StringResources.HomeScreen));
+            this.UiScreens.Add("SettingsScreen", Resources.GetString(Resources.StringResources.SettingsScreen));
+            this.UiScreens.Add("LogOnScreen", Resources.GetString(Resources.StringResources.LogInScreen));
 
             //Images
             this.Images.Add("PowerOffEnabled", new Bitmap(Resources.GetBytes(Resources.BinaryResources.PowerOffEnabled), Bitmap.BitmapImageType.Gif));

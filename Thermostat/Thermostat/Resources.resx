@@ -124,9 +124,9 @@
   <data name="small" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\small.tinyfnt;System.Byte[], mscorlib, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="ControlScreen" xml:space="preserve">
+  <data name="HomeScreen" xml:space="preserve">
     <value>&lt;Glide Version="1.0.7"&gt;
-  &lt;Window Name="instance115" Width="800" Height="480" BackColor="FFFFFF"&gt;
+  &lt;Window Name="HomeScreen" Width="800" Height="480" BackColor="FFFFFF"&gt;
     &lt;Button Name="IncrementTemperatureUp" X="145" Y="325" Width="125" Height="70" Alpha="255" Text="v" Font="9" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
     &lt;Button Name="IncrementTemperatureDown" X="20" Y="325" Width="125" Height="70" Alpha="255" Text="^" Font="9" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
     &lt;Button Name="Off Mode" X="280" Y="325" Width="70" Height="70" Alpha="255" Text="O" Font="9" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
@@ -201,5 +201,19 @@
   </data>
   <data name="ArrowKeyDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\ArrowKeyDown.gif;System.Byte[], mscorlib, Version=4.2.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="LogInScreen" xml:space="preserve">
+    <value>&lt;Glide Version="1.0.7"&gt;
+  &lt;Window Name="LogInScreen" Width="800" Height="480" BackColor="FFFFFF"&gt;
+    &lt;Button Name="Home" X="720" Y="0" Width="80" Height="80" Alpha="255" Text="Home" Font="4" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
+  &lt;/Window&gt;
+&lt;/Glide&gt;</value>
+  </data>
+  <data name="SettingsScreen" xml:space="preserve">
+    <value>&lt;Glide Version="1.0.7"&gt;
+  &lt;Window Name="SettingsScreen" Width="800" Height="480" BackColor="FFFFFF"&gt;
+    &lt;Button Name="Home" X="720" Y="0" Width="80" Height="80" Alpha="255" Text="Home" Font="4" FontColor="000000" DisabledFontColor="808080" TintColor="000000" TintAmount="0"/&gt;
+  &lt;/Window&gt;
+&lt;/Glide&gt;</value>
   </data>
 </root>

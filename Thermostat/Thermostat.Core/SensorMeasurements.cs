@@ -34,7 +34,11 @@ namespace Thermostat.Core
                 {
                     dateNow = value;
                 }
-                ClockChangedEvent(this.DateNow, new ClockChangedArgs(value));
+                var handler = ClockChangedEvent;
+                if (handler != null)
+                {
+                    ClockChangedEvent(this.DateNow, new ClockChangedArgs(value));
+                }
             }
         }
 

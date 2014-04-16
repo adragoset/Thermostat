@@ -38,6 +38,13 @@ namespace Thermostat
             return ((byte[])(Microsoft.SPOT.ResourceUtility.GetObject(ResourceManager, id)));
         }
         [System.SerializableAttribute()]
+        internal enum StringResources : short
+        {
+            LogInScreen = -32322,
+            HomeScreen = -24487,
+            SettingsScreen = 5598,
+        }
+        [System.SerializableAttribute()]
         internal enum BinaryResources : short
         {
             AutoDown = -25572,
@@ -65,11 +72,6 @@ namespace Thermostat
             Arial72 = -19034,
             small = 13070,
             NinaB = 18060,
-        }
-        [System.SerializableAttribute()]
-        internal enum StringResources : short
-        {
-            ControlScreen = 28913,
         }
     }
 }
