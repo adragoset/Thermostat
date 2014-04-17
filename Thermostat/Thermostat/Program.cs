@@ -16,6 +16,7 @@ using Gadgeteer.Modules.GHIElectronics;
 using Gadgeteer.Modules.Seeed;
 using Thermostat.Core;
 using Thermostat.TouchUi;
+using Gadgeteer.Modules.DFRobot;
 
 
 
@@ -34,7 +35,6 @@ namespace Thermostat
         private Hashtable UiScreens { get; set; }
         private Hashtable Images { get; set; }
         private Hashtable Fonts { get; set; }
-        private DateTime RealTimeClock{ get; set; }
 
         void ProgramStarted()
         {
@@ -119,8 +119,8 @@ namespace Thermostat
 
         private void timer_Tick(GT.Timer timer)
         {
-            this.RealTimeClock = RealTimeClock.Date;
-            Debug.Print("Current Real-time Clock " + this.RealTimeClock.ToString());
+             
+            Debug.Print("Current Real-time Clock " + this.RealTimeClock.GetDateTime().ToString());
             Debug.Print("Temperature: " + this.SystemState.PrimaryAirTemperature.FormattedString() + " Relative Humidity: " + this.SystemState.PrimaryAirHumidity.FormattedString());
         }
 
