@@ -55,7 +55,7 @@ namespace Thermostat
             Debug.Print("Program Started");
 
             this.SystemSettings = new Settings();
-            this.SystemState = new SensorMeasurements(temperatureHumidity);
+            this.SystemState = new SensorMeasurements(temperatureHumidity, barometer);
             this.ControlLoop = new HvacControl(Heat, Cool, Fan, SystemSettings, SystemState);
             this.UiScreens = new Hashtable();
             this.Images = new Hashtable();

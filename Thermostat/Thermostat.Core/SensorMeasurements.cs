@@ -12,9 +12,12 @@ namespace Thermostat.Core
 
         public Humidity PrimaryAirHumidity { get; private set; }
 
+        public Pressure AtmPressure { get; private set; }
+
         public SystemModeEnum SystemMode { get; private set; }
 
-        private Gadgeteer.Modules.Seeed.TemperatureHumidity TempHumiditySensor;
+        private TemperatureHumidity TempHumiditySensor;
+        private Barometer BarometerSensor;
 
         public static object Date_Lock = new object();
         private DateTime dateNow { get; set; }
@@ -37,7 +40,7 @@ namespace Thermostat.Core
                 var handler = ClockChangedEvent;
                 if (handler != null)
                 {
-                    ClockChangedEvent(this.DateNow, new ClockChangedArgs(value));
+                    ClockChangedEvent(this, new ClockChangedArgs(value));
                 }
             }
         }
@@ -58,14 +61,13 @@ namespace Thermostat.Core
 
         }
 
-        public SensorMeasurements(Gadgeteer.Modules.Seeed.TemperatureHumidity tempSensor)
+        public SensorMeasurements(TemperatureHumidity tempSensor, Barometer barSensor)
         {
             PrimaryAirTemperature = new Temperature(0);
             PrimaryAirHumidity = new Humidity();
+            AtmPressure = new Pressure();
             SetTemperatureUnits(TemperatureUnits.Farenheit);
-            TempHumiditySensor = tempSensor;
-            TempHumiditySensor.MeasurementComplete += new TemperatureHumidity.MeasurementCompleteEventHandler(TemperatureMeasuermentComplete);
-            TempHumiditySensor.StartContinuousMeasurements();
+            SetupSensorHandlers(tempSensor, barSensor);
 
             // Create a timer
             ClockTimer = new GT.Timer(500);
@@ -94,10 +96,27 @@ namespace Thermostat.Core
             }
         }
 
-        private void TemperatureMeasuermentComplete(TemperatureHumidity sender, double temperature, double relativeHumidity)
+        private void SetupSensorHandlers(TemperatureHumidity tempSensor, Barometer barSensor)
+        {
+            TempHumiditySensor = tempSensor;
+            TempHumiditySensor.MeasurementComplete += new TemperatureHumidity.MeasurementCompleteEventHandler(Temperature_Measuerment_Complete);
+            TempHumiditySensor.StartContinuousMeasurements();
+
+            BarometerSensor = barSensor;
+            BarometerSensor.ContinuousMeasurementInterval = new TimeSpan(5000);
+            BarometerSensor.MeasurementComplete += new Barometer.MeasurementCompleteEventHandler(Barometer_Measurement_Complete);
+            BarometerSensor.StartContinuousMeasurements();
+        }
+
+        private void Temperature_Measuerment_Complete(TemperatureHumidity sender, double temperature, double relativeHumidity)
         {
             PrimaryAirTemperature.SetTemperature(temperature);
             PrimaryAirHumidity.SetHumidity(relativeHumidity);
+        }
+
+        private void Barometer_Measurement_Complete(Barometer sender, Barometer.SensorData sensorData)
+        {
+            this.AtmPressure.SetAtmPressure(sensorData.Pressure);
         }
     }
 }

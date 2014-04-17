@@ -37,6 +37,7 @@ namespace Thermostat.TouchUi
         public TextBlock MaxTemp { get; private set; }
         public TextBlock MinTemp { get; private set; }
         public TextBlock Humidity { get; private set; }
+        public TextBlock Pressure { get; private set; }
 
         public event UpdateScreenEventHandler StatusUpdated;
 
@@ -70,6 +71,21 @@ namespace Thermostat.TouchUi
             MaxTemp = (TextBlock)Window.GetChildByName("MaxTemp");
             MinTemp = (TextBlock)Window.GetChildByName("MinTemp");
             Humidity = (TextBlock)Window.GetChildByName("Humidity");
+            Pressure = (TextBlock)Window.GetChildByName("Pressure");
+
+            var pressureLabel = ((TextBlock)Window.GetChildByName("PressureText"));
+            pressureLabel.Text = "Pressure";
+            pressureLabel.Invalidate();
+            var humidityLabel = ((TextBlock)Window.GetChildByName("HumidityText"));
+            humidityLabel.Text = "Humidity";
+            humidityLabel.Invalidate();
+            var minText = ((TextBlock)Window.GetChildByName("MinText"));
+            minText.Text = "Min";
+            minText.Invalidate();
+            var maxText = ((TextBlock)Window.GetChildByName("MaxText"));
+            maxText.Text = "Max";
+            maxText.Invalidate();
+
             EnableEventListeners();
         }
 
@@ -105,6 +121,7 @@ namespace Thermostat.TouchUi
         private void EnableEventListeners() {
             Measurements.ClockChangedEvent += new Thermostat.Core.SensorMeasurements.ClockChangedDelegate(Handle_Clock_Changed);
             Measurements.PrimaryAirTemperature.TemperatureChanged += (a, b) => Handle_CurrentTemp_Change(a, b);
+            Measurements.AtmPressure.PressureChanged += (a, b) => Handle_Pressure_Change(a, b);
             Settings.TargetTemp.TemperatureSettingChanged += (a, b) => Handle_TempSetting_Change(a, b);
         }
 
@@ -272,14 +289,20 @@ namespace Thermostat.TouchUi
             this.CurrentTemperatureValue.Text = e.TemperatureString;
             this.CurrentTemperatureValue.Invalidate();
 
-            Humidity.Text = Measurements.PrimaryAirHumidity.FormattedString();
-            Humidity.Invalidate();
+            this.Humidity.Text = Measurements.PrimaryAirHumidity.FormattedString();
+            this.Humidity.Invalidate();
         }
 
         private void Handle_Clock_Changed(object sender, SensorMeasurements.ClockChangedArgs e)
         {
             DateTime.Text = e.Now.ToString();
             DateTime.Invalidate();
+        }
+
+        private void Handle_Pressure_Change(object a, Core.Pressure.PressureChangedArgs b)
+        {
+            this.Pressure.Text = b.PressureString;
+            this.Pressure.Invalidate();
         }
 
         private void IncrementSetTemperatureUp_TapEvent(object sender)
@@ -294,15 +317,15 @@ namespace Thermostat.TouchUi
 
             if (this.Settings.Mode == SystemModeEnum.AUTO)
             {
-                this.MinTemp.Text = "Min: " + this.Settings.AutoMinTemp.ToString();
-                this.MaxTemp.Text = "Max: " + this.Settings.AutoMaxTemp.ToString();
+                this.MinTemp.Text = this.Settings.AutoMinTemp.ToString();
+                this.MaxTemp.Text = this.Settings.AutoMaxTemp.ToString();
                 this.MinTemp.Invalidate();
                 this.MaxTemp.Invalidate();
             }
             else
             {
-                this.MinTemp.Text = "Min: " + (temp - deadZone).ToString();
-                this.MaxTemp.Text = "Max: " + (temp + deadZone).ToString();
+                this.MinTemp.Text = (temp - deadZone).ToString();
+                this.MaxTemp.Text = (temp + deadZone).ToString();
                 this.MinTemp.Invalidate();
                 this.MaxTemp.Invalidate();
             }

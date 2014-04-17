@@ -22,7 +22,7 @@ namespace Thermostat.Core
 
         public string FormattedString()
         {
-            return GetHumidity().ToString("f2") + '%';
+            return GetHumidity().ToString("f2") + " %";
         }
 
         public void SetHumidity(double relativeHumidity)

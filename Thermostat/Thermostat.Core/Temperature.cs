@@ -27,15 +27,6 @@ namespace Thermostat.Core
             
         }
 
-        private void OnTemperatureChanged(TemperatureChangedArgs e)
-        {
-            var handler = TemperatureChanged;
-            if (handler != null)
-            {
-                handler(this, e);
-            }
-        }
-
         public Temperature(double temp)
         {
             SetTemperature(temp);
@@ -66,13 +57,22 @@ namespace Thermostat.Core
             }
         }
 
+        private void OnTemperatureChanged(TemperatureChangedArgs e)
+        {
+            var handler = TemperatureChanged;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
         public void SetTemperature(double temperature)
         {
             lock (Value_Lock)
             {
                 this.Value = temperature;
             }
-            OnTemperatureChanged(new TemperatureChangedArgs(this.Value, this.FormattedString()));
+            OnTemperatureChanged(new TemperatureChangedArgs(temperature, this.FormattedString()));
         }
 
         public double GetTemperature()
