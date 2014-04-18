@@ -8,7 +8,7 @@
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{45401117-89C7-408A-A8AC-A5668BCFD7A9}</ProjectGuid>
-    <TargetFrameworkVersion>v4.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.3</TargetFrameworkVersion>
     <NetMfTargetsBaseDir Condition="'$(NetMfTargetsBaseDir)'==''">$(MSBuildExtensionsPath32)\Microsoft\.NET Micro Framework\</NetMfTargetsBaseDir>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -43,12 +43,14 @@
     <Compile Include="TemperatureSetting.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Gadgeteer, Version=2.42.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="GHI.Premium.Net, Version=4.2.11.1, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="GHIElectronics.Gadgeteer.FEZRaptor, Version=4.2.102.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="GTM.GHIElectronics.Relay_X1, Version=4.2.102.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="GTM.Seeed.Barometer, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="GTM.Seeed.TemperatureHumidity, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Gadgeteer, Version=2.43.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft .NET Gadgeteer\Core\Assemblies\.NET Micro Framework 4.3\Gadgeteer.dll</HintPath>
+    </Reference>
+    <Reference Include="GHIElectronics.Gadgeteer.FEZRaptor, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="GTM.GHIElectronics.Barometer, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="GTM.GHIElectronics.RelayX1, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="GTM.GHIElectronics.TempHumidity, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SPOT.Native">
     </Reference>
     <Reference Include="System" />

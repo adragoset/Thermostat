@@ -12,7 +12,7 @@ namespace Thermostat.TouchUi
 {
     public class ThermostatUi
     {
-        private Display_CP7 Display;
+        private DisplayCP7 Display;
 
         private Hashtable Screens = new Hashtable();
 
@@ -20,7 +20,7 @@ namespace Thermostat.TouchUi
 
         private Settings Settings;
 
-        public ThermostatUi(Display_CP7 Display, Hashtable screens, Hashtable images, Hashtable fonts, Settings systemSettings, SensorMeasurements measurements)
+        public ThermostatUi(DisplayCP7 Display, Hashtable screens, Hashtable images, Hashtable fonts, Settings systemSettings, SensorMeasurements measurements)
         {
             this.Display = Display;
             this.Settings = systemSettings;

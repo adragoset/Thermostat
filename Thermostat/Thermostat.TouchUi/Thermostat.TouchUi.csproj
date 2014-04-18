@@ -8,7 +8,7 @@
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{75FFEEBE-C1F2-423A-B31E-5D3CA4D68732}</ProjectGuid>
-    <TargetFrameworkVersion>v4.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.3</TargetFrameworkVersion>
     <NetMfTargetsBaseDir Condition="'$(NetMfTargetsBaseDir)'==''">$(MSBuildExtensionsPath32)\Microsoft\.NET Micro Framework\</NetMfTargetsBaseDir>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -39,17 +39,17 @@
     <Compile Include="TouchInitialization.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Gadgeteer, Version=2.42.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="GHI.Glide, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Gadgeteer, Version=2.43.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft .NET Gadgeteer\Core\Assemblies\.NET Micro Framework 4.3\Gadgeteer.dll</HintPath>
+    </Reference>
+    <Reference Include="GHI.Glide, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="GTM.GHIElectronics.DisplayCP7, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SPOT.Graphics" />
     <Reference Include="Microsoft.SPOT.Native" />
     <Reference Include="Microsoft.SPOT.Net" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Display_CP7\Software\Display_CP7\Display_CP7_42\Display_CP7_42.csproj">
-      <Project>{BCFA9885-A25B-4F3F-86AC-10A1FF378725}</Project>
-      <Name>Display_CP7_42</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Thermostat.Core\Thermostat.Core.csproj">
       <Project>{45401117-89C7-408A-A8AC-A5668BCFD7A9}</Project>
       <Name>Thermostat.Core</Name>

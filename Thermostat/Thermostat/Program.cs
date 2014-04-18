@@ -7,16 +7,13 @@ using Microsoft.SPOT.Presentation.Controls;
 using Microsoft.SPOT.Presentation.Media;
 using Microsoft.SPOT.Presentation.Shapes;
 using Microsoft.SPOT.Touch;
-using GHI.Premium.Hardware;
 
 using Gadgeteer.Networking;
 using GT = Gadgeteer;
 using GTM = Gadgeteer.Modules;
 using Gadgeteer.Modules.GHIElectronics;
-using Gadgeteer.Modules.Seeed;
 using Thermostat.Core;
 using Thermostat.TouchUi;
-using Gadgeteer.Modules.DFRobot;
 
 
 
@@ -26,6 +23,9 @@ namespace Thermostat
     public partial class Program
     {
         public const string Encryption_Key = "1CdQymMKb42I5Ptf6xSZPFaEjZYiT7C4";
+
+        //private GTM.GHIElectronics.WiFiRS21 wifi;
+        private TemperatureHumidity temperatureHumidity;
 
         private SensorMeasurements SystemState { get; set; }
         private Settings SystemSettings { get; set; }
@@ -50,9 +50,11 @@ namespace Thermostat
                 timer.Tick +=<tab><tab>
                 timer.Start();
             *******************************************************************************************/
-
             // Use Debug.Print to show messages in Visual Studio's "Output" window during debugging.
             Debug.Print("Program Started");
+
+            //wifi = new GTM.GHIElectronics.WiFiRS21(3);
+            this.temperatureHumidity = new GTM.GHIElectronics.TemperatureHumidity(this.hubAP5.HubSocket3);
 
             this.SystemSettings = new Settings();
             this.SystemState = new SensorMeasurements(temperatureHumidity, barometer);
@@ -119,11 +121,8 @@ namespace Thermostat
 
         private void timer_Tick(GT.Timer timer)
         {
-             
-            Debug.Print("Current Real-time Clock " + this.RealTimeClock.GetDateTime().ToString());
             Debug.Print("Temperature: " + this.SystemState.PrimaryAirTemperature.FormattedString() + " Relative Humidity: " + this.SystemState.PrimaryAirHumidity.FormattedString());
         }
-
 
     }
 }

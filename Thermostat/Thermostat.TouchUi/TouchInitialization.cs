@@ -10,17 +10,17 @@ namespace Thermostat.TouchUi
 {
     public class TouchInitialization
     {
-        private Display_CP7 Display;
+        private DisplayCP7 Display;
         private Point last = new Point(0, 0);
         private bool touched = false;
 
-        public TouchInitialization(Display_CP7 display) {
+        public TouchInitialization(DisplayCP7 display) {
             this.Display = display;
-            this.Display.ScreenPressed += (a, b) => display_CP7_ScreenPressed(a, b);
-            this.Display.ScreenReleased += (a) => display_CP7_ScreenReleased(a);
+            //this.Display.ScreenPressed += (a, b) => display_CP7_ScreenPressed(a, b);
+            //this.Display.ScreenReleased += (a) => display_CP7_ScreenReleased(a);
         }
 
-        public void display_CP7_ScreenPressed(Display_CP7 sender, Display_CP7.TouchStatus touchStatus)
+        public void display_CP7_ScreenPressed(DisplayCP7 sender, DisplayCP7.TouchStatus touchStatus)
         {
             if (touchStatus.numTouches <= 0 || GlideTouch.IgnoreAllEvents)
                 return;
@@ -46,7 +46,7 @@ namespace Thermostat.TouchUi
             }
         }
 
-        public void display_CP7_ScreenReleased(Display_CP7 sender)
+        public void display_CP7_ScreenReleased(DisplayCP7 sender)
         {
             this.touched = false;
 

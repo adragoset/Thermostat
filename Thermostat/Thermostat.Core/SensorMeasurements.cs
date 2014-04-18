@@ -1,4 +1,4 @@
-using Gadgeteer.Modules.Seeed;
+using Gadgeteer.Modules.GHIElectronics;
 using Microsoft.SPOT;
 using System;
 using GT = Gadgeteer;

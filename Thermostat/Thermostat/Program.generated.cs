@@ -15,32 +15,26 @@ namespace Thermostat {
     
     public partial class Program : Gadgeteer.Program {
         
-        /// <summary>The Relay X1 module using socket H4 of hubAP5.</summary>
-        private Gadgeteer.Modules.GHIElectronics.Relay_X1 Heat;
-        
-        /// <summary>The Relay X1 module using socket H5 of hubAP5.</summary>
-        private Gadgeteer.Modules.GHIElectronics.Relay_X1 Cool;
-        
-        /// <summary>The Relay X1 module using socket H6 of hubAP5.</summary>
-        private Gadgeteer.Modules.GHIElectronics.Relay_X1 Fan;
-        
-        /// <summary>The TemperatureHumidity module using socket H3 of hubAP5.</summary>
-        private Gadgeteer.Modules.Seeed.TemperatureHumidity temperatureHumidity;
-        
-        /// <summary>The WiFi_RS21 (Premium) module using socket 3 of the mainboard.</summary>
-        private Gadgeteer.Modules.GHIElectronics.WiFi_RS21 wifi_RS21;
-        
-        /// <summary>The Display_CP7 module using sockets 15, 16, 17 and 14 of the mainboard.</summary>
-        private Gadgeteer.Modules.GHIElectronics.Display_CP7 Display;
-        
         /// <summary>The HubAP5 module using socket 12 of the mainboard.</summary>
         private Gadgeteer.Modules.GHIElectronics.HubAP5 hubAP5;
         
-        /// <summary>The Barometer module using socket 10 of the mainboard.</summary>
-        private Gadgeteer.Modules.Seeed.Barometer barometer;
+        /// <summary>The DisplayCP7 module using sockets 15, 16, 17 and 6 of the mainboard.</summary>
+        private Gadgeteer.Modules.GHIElectronics.DisplayCP7 Display;
         
-        /// <summary>The SD2405 Real-Time Clock module using socket 13 of the mainboard.</summary>
-        private Gadgeteer.Modules.DFRobot.SD2405_Real_Time_Clock RealTimeClock;
+        /// <summary>The RelayX1 module using socket H3 of hubAP5.</summary>
+        private Gadgeteer.Modules.GHIElectronics.RelayX1 Heat;
+        
+        /// <summary>The RelayX1 module using socket H5 of hubAP5.</summary>
+        private Gadgeteer.Modules.GHIElectronics.RelayX1 Fan;
+        
+        /// <summary>The RelayX1 module using socket H4 of hubAP5.</summary>
+        private Gadgeteer.Modules.GHIElectronics.RelayX1 Cool;
+        
+        /// <summary>The GasSense module using socket H2 of hubAP5.</summary>
+        private Gadgeteer.Modules.GHIElectronics.GasSense gasSense;
+        
+        /// <summary>The Barometer module using socket 10 of the mainboard.</summary>
+        private Gadgeteer.Modules.GHIElectronics.Barometer barometer;
         
         /// <summary>The SDCard module using socket 9 of the mainboard.</summary>
         private Gadgeteer.Modules.GHIElectronics.SDCard sdCard;
@@ -68,14 +62,12 @@ namespace Thermostat {
         
         private void InitializeModules() {
             this.hubAP5 = new GTM.GHIElectronics.HubAP5(12);
-            this.Heat = new GTM.GHIElectronics.Relay_X1(this.hubAP5.HubSocket4);
-            this.Cool = new GTM.GHIElectronics.Relay_X1(this.hubAP5.HubSocket5);
-            this.Fan = new GTM.GHIElectronics.Relay_X1(this.hubAP5.HubSocket6);
-            this.temperatureHumidity = new GTM.Seeed.TemperatureHumidity(this.hubAP5.HubSocket3);
-            this.wifi_RS21 = new GTM.GHIElectronics.WiFi_RS21(3);
-            this.Display = new GTM.GHIElectronics.Display_CP7(15, 16, 17, 14);
-            this.barometer = new GTM.Seeed.Barometer(10);
-            this.RealTimeClock = new GTM.DFRobot.SD2405_Real_Time_Clock(13);
+            this.Display = new GTM.GHIElectronics.DisplayCP7(15, 16, 17, 6);
+            this.Heat = new GTM.GHIElectronics.RelayX1(this.hubAP5.HubSocket3);
+            this.Fan = new GTM.GHIElectronics.RelayX1(this.hubAP5.HubSocket5);
+            this.Cool = new GTM.GHIElectronics.RelayX1(this.hubAP5.HubSocket4);
+            this.gasSense = new GTM.GHIElectronics.GasSense(this.hubAP5.HubSocket2);
+            this.barometer = new GTM.GHIElectronics.Barometer(10);
             this.sdCard = new GTM.GHIElectronics.SDCard(9);
         }
     }

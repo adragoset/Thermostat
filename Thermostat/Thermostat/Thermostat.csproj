@@ -3,13 +3,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6596757F-5320-4744-B977-76316B11BF3B}</ProjectGuid>
+    <ProjectGuid>{56DBCD03-09A9-4D4F-B3A9-0BA6E8D6AD3B}</ProjectGuid>
     <!--This is an executable-->
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Thermostat</RootNamespace>
     <AssemblyName>Thermostat</AssemblyName>
-    <TargetFrameworkVersion>v4.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.3</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <!--Identify this as a MicroFramework, CSharp project-->
     <ProjectTypeGuids>{b69e3092-b931-443c-abe7-7e7b65f2a37f};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -18,6 +18,7 @@
     <!-- Default transport and device-->
     <DeployDevice>Gadgeteer</DeployDevice>
     <DeployTransport>USB</DeployTransport>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,59 +40,43 @@
   <!-- Everything below here is custom to .NET MF / Gadgeteer template-->
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
+    <Compile Include="Program.cs" />
     <Compile Include="Program.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Program.gadgeteer</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Resources1.Designer.cs">
+    <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Gadgeteer" />
-    <Reference Include="Gadgeteer.WebClient, Version=2.42.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Gadgeteer, Version=2.43.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft .NET Gadgeteer\Core\Assemblies\.NET Micro Framework 4.3\Gadgeteer.dll</HintPath>
+    </Reference>
+    <Reference Include="GHIElectronics.Gadgeteer.FEZRaptor, Version=4.2.103.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="Gadgeteer.WebServer, Version=2.42.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="GTM.GHIElectronics.Barometer, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="GHI.Glide, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="GHI.Premium.Hardware, Version=4.2.11.1, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="GHI.Premium.Net, Version=4.2.11.1, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="GTM.GHIElectronics.GasSense, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="GHIElectronics.Gadgeteer.FEZRaptor, Version=4.2.102.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="GTM.GHIElectronics.HubAP5, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="GTM.DFRobot.SD2405_Real_Time_Clock, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="GTM.GHIElectronics.RelayX1, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="GTM.GHIElectronics.Display_CP7, Version=4.2.102.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="GTM.GHIElectronics.SDCard, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="GTM.GHIElectronics.HubAP5, Version=4.2.102.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="GTM.GHIElectronics.Relay_X1, Version=4.2.102.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="GTM.GHIElectronics.SDCard, Version=4.2.102.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="GTM.GHIElectronics.WiFi_RS21, Version=4.2.102.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="GTM.Seeed.Barometer, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="GTM.Seeed.TemperatureHumidity, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
+    <Reference Include="GTM.GHIElectronics.TempHumidity, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SPOT.Graphics" />
     <Reference Include="Microsoft.SPOT.Hardware" />
     <Reference Include="Microsoft.SPOT.Native" />
@@ -104,7 +89,7 @@
     <EmbeddedResource Include="Resources.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -120,48 +105,37 @@
     <None Include="Resources\small.tinyfnt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Display_CP7\Software\Display_CP7\Display_CP7_42\Display_CP7_42.csproj">
-      <Project>{BCFA9885-A25B-4F3F-86AC-10A1FF378725}</Project>
-      <Name>Display_CP7_42</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Thermostat.Core\Thermostat.Core.csproj">
-      <Project>{45401117-89C7-408A-A8AC-A5668BCFD7A9}</Project>
-      <Name>Thermostat.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Thermostat.TouchUi\Thermostat.TouchUi.csproj">
-      <Project>{75FFEEBE-C1F2-423A-B31E-5D3CA4D68732}</Project>
-      <Name>Thermostat.TouchUi</Name>
-    </ProjectReference>
+    <None Include="Resources\AutoDisabled.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Button.png" />
+    <None Include="Resources\AutoDown.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\BlankButton.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BackGround.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PowerOffUp.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PowerOffDisabled.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PowerOffDown.gif" />
+    <None Include="Resources\AutoEnabled.gif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BackGround.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\HeatEnabled.gif" />
+    <None Include="Resources\ArrowKeyDown.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ArrowKeyUp.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FanDown.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FanEnabled.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HeatDisabled.gif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HeatDown.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\HeatDisabled.gif" />
+    <None Include="Resources\HeatEnabled.gif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CoolDisabled.gif" />
@@ -176,24 +150,26 @@
     <None Include="Resources\FanDisabled.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\FanDown.gif" />
+    <None Include="Resources\PowerOffDown.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\FanEnabled.gif" />
+    <None Include="Resources\PowerOffUp.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AutoDisabled.gif" />
+    <None Include="Resources\PowerOffDisabled.gif" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AutoDown.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\AutoEnabled.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ArrowKeyUp.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\ArrowKeyDown.gif" />
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{314020F8-6720-4545-9DA8-3C7B25C9106C}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cp7_Driver\Cp7_Driver.csproj">
+      <Project>{57F2A8A6-9D5F-4FB8-BBF7-2A2AB625DF8A}</Project>
+      <Name>Cp7_Driver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TouchUi\TouchUi.csproj">
+      <Project>{025AC210-3BBD-46A3-9764-550120A8E0BC}</Project>
+      <Name>TouchUi</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

@@ -11,23 +11,23 @@ namespace Thermostat.Core
         private static int Millisecond_Conversion_Factor = 60000;
 
         private bool HeatOn;
-        private Relay_X1 Heat;
+        private RelayX1 Heat;
 
         private GT.Timer StartDelayTimer;
         private bool CompressorStartDelay;
         private bool CompressorOn;
-        private Relay_X1 Cool;
+        private RelayX1 Cool;
         private GT.Timer FanShutDownDelayTimer { get; set; }
 
         private bool FanOn;
-        private Relay_X1 Fan;
+        private RelayX1 Fan;
         private Settings SystemSettings;
         private SensorMeasurements SystemState;
         private GT.Timer ControlLoopTimer { get; set; }
 
         private SystemModeEnum CurrentMode { get; set; }
 
-        public HvacControl(Relay_X1 Heat, Relay_X1 Cool, Relay_X1 Fan, Settings SystemSettings, SensorMeasurements SystemState)
+        public HvacControl(RelayX1 Heat, RelayX1 Cool, RelayX1 Fan, Settings SystemSettings, SensorMeasurements SystemState)
         {
             // TODO: Complete member initialization
             this.Heat = Heat;
