@@ -277,7 +277,7 @@ namespace Thermostat.Core
 
         private void SwitchCompressorOn()
         {
-            if (!this.CompressorStartDelay  && !this.CompressorOn && !this.HeatOn && this.FanOn == true)
+            if (!this.CompressorStartDelay && !this.CompressorOn && !this.HeatOn && this.FanOn == true)
             {
                 this.CompressorOn = true;
                 this.Cool.TurnOn();

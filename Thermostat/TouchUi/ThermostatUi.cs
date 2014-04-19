@@ -27,8 +27,8 @@ namespace Thermostat.TouchUi
             this.Settings.GuiLoggedIn = true;
             Glide.FitToScreen = true;
             this.TouchIni = new TouchInitialization(Display);
-            InitializeScreens(screens, images, fonts, systemSettings, measurements);
             //set the current window
+            InitializeScreens(screens, images, fonts, systemSettings, measurements);
             Glide.MainWindow = ((IScreen)Screens["HomeScreen"]).Window;
         }
 

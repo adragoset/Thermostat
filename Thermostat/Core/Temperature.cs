@@ -19,12 +19,11 @@ namespace Thermostat.Core
             public double Temperature { get; private set; }
             public string TemperatureString { get; set; }
 
-            public TemperatureChangedArgs(double e, string s) {
+            public TemperatureChangedArgs(double e, string s)
+            {
                 this.Temperature = e;
                 this.TemperatureString = s;
             }
-
-            
         }
 
         public Temperature(double temp)
@@ -99,11 +98,11 @@ namespace Thermostat.Core
                 convertedValue = this.Value + 273.15;
             }
 
-
             return System.Math.Round(convertedValue * 100.0) / 100.0;
         }
 
-        public int GetTemperatureInC() {
+        public int GetTemperatureInC()
+        {
             return (int)(this.Value);
         }
 

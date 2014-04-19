@@ -51,19 +51,24 @@ namespace Thermostat.Core
                 {
                     this.Temperature = (int)(this.Temperature * 1.8 + 32.0);
                 }
-                else if (oldUnits == TemperatureUnits.Farenheit && value == TemperatureUnits.Celcius) {
+                else if (oldUnits == TemperatureUnits.Farenheit && value == TemperatureUnits.Celcius)
+                {
                     this.Temperature = (int)(((this.Temperature - 32) * 5) / 9);
                 }
-                else if (oldUnits == TemperatureUnits.Celcius && value == TemperatureUnits.Kelvin) {
+                else if (oldUnits == TemperatureUnits.Celcius && value == TemperatureUnits.Kelvin)
+                {
                     this.Temperature = (int)(this.Temperature + 273.15);
                 }
-                else if (oldUnits == TemperatureUnits.Farenheit && value == TemperatureUnits.Kelvin) {
+                else if (oldUnits == TemperatureUnits.Farenheit && value == TemperatureUnits.Kelvin)
+                {
                     this.Temperature = (int)(((this.Temperature - 32) / 1.8) + 273.15);
                 }
-                else if (oldUnits == TemperatureUnits.Kelvin && value == TemperatureUnits.Celcius) {
+                else if (oldUnits == TemperatureUnits.Kelvin && value == TemperatureUnits.Celcius)
+                {
                     this.Temperature = (int)(this.Temperature - 273.15);
                 }
-                else if (oldUnits == TemperatureUnits.Kelvin && value == TemperatureUnits.Farenheit) {
+                else if (oldUnits == TemperatureUnits.Kelvin && value == TemperatureUnits.Farenheit)
+                {
                     this.Temperature = (int)(((this.Temperature - 273.15) * 1.8) + 32);
                 }
             }
@@ -94,15 +99,19 @@ namespace Thermostat.Core
             }
         }
 
-        public TemperatureSetting() {
+        public TemperatureSetting()
+        {
             this.temperature = 30;
             this.units = TemperatureUnits.Celcius;
         }
 
-        public void IncrementTemperature() {
+        public void IncrementTemperature()
+        {
             int newTemp = this.Temperature + 1;
-            if (this.Units == TemperatureUnits.Celcius) {
-                if (newTemp <= 40 && newTemp >= 20) {
+            if (this.Units == TemperatureUnits.Celcius)
+            {
+                if (newTemp <= 40 && newTemp >= 20)
+                {
                     this.Temperature = newTemp;
                 }
             }
@@ -113,7 +122,8 @@ namespace Thermostat.Core
                     this.Temperature = newTemp;
                 }
             }
-            else {
+            else
+            {
                 this.temperature = newTemp;
             }
         }
@@ -143,13 +153,16 @@ namespace Thermostat.Core
 
         public string FormattedString()
         {
-            if (this.Units == TemperatureUnits.Celcius) {
+            if (this.Units == TemperatureUnits.Celcius)
+            {
                 return this.Temperature + " C";
             }
-            else if (this.Units == TemperatureUnits.Farenheit) {
+            else if (this.Units == TemperatureUnits.Farenheit)
+            {
                 return this.Temperature + " F";
             }
-            else{
+            else
+            {
                 return this.Temperature + " K";
             }
         }

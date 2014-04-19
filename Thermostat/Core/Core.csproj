@@ -1,16 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <AssemblyName>Thermostat.TouchUi</AssemblyName>
+    <AssemblyName>Thermostat.Core</AssemblyName>
     <OutputType>Library</OutputType>
-    <RootNamespace>Thermostat.TouchUi</RootNamespace>
+    <RootNamespace>Thermostat.Core</RootNamespace>
     <ProjectTypeGuids>{b69e3092-b931-443c-abe7-7e7b65f2a37f};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{75FFEEBE-C1F2-423A-B31E-5D3CA4D68732}</ProjectGuid>
+    <ProjectGuid>{314020F8-6720-4545-9DA8-3C7B25C9106C}</ProjectGuid>
     <TargetFrameworkVersion>v4.3</TargetFrameworkVersion>
     <NetMfTargetsBaseDir Condition="'$(NetMfTargetsBaseDir)'==''">$(MSBuildExtensionsPath32)\Microsoft\.NET Micro Framework\</NetMfTargetsBaseDir>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,28 +30,26 @@
   </PropertyGroup>
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
-    <Compile Include="HomeScreen.cs" />
-    <Compile Include="IScreen.cs" />
+    <Compile Include="Humidity.cs" />
+    <Compile Include="HvacControl.cs" />
+    <Compile Include="Pressure.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettingsScreen.cs" />
-    <Compile Include="ThermostatUi.cs" />
-    <Compile Include="TouchInitialization.cs" />
+    <Compile Include="RelayStatus.cs" />
+    <Compile Include="SensorMeasurements.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="SystemModeEnum.cs" />
+    <Compile Include="Temperature.cs" />
+    <Compile Include="TemperatureSetting.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Gadgeteer, Version=2.43.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft .NET Gadgeteer\Core\Assemblies\.NET Micro Framework 4.3\Gadgeteer.dll</HintPath>
     </Reference>
-    <Reference Include="GHI.Glide, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="GTM.GHIElectronics.DisplayCP7, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.SPOT.Graphics" />
-    <Reference Include="Microsoft.SPOT.Native" />
-    <Reference Include="Microsoft.SPOT.Net" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Thermostat.Core\Thermostat.Core.csproj">
-      <Project>{45401117-89C7-408A-A8AC-A5668BCFD7A9}</Project>
-      <Name>Thermostat.Core</Name>
-    </ProjectReference>
+    <Reference Include="GTM.GHIElectronics.Barometer, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="GTM.GHIElectronics.RelayX1, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="GTM.GHIElectronics.TempHumidity, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SPOT.Native">
+    </Reference>
   </ItemGroup>
 </Project>

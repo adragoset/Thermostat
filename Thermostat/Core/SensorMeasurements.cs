@@ -29,7 +29,7 @@ namespace Thermostat.Core
                 {
                     return dateNow;
                 }
-                
+
             }
             set
             {

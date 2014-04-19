@@ -26,7 +26,7 @@ namespace Thermostat.Core
 
 
                 this.TargetTemp.Units = value;
-               
+
             }
         }
 
@@ -201,7 +201,7 @@ namespace Thermostat.Core
         }
 
         public bool GuiLoggedIn { get; set; }
-        
+
         public Settings()
         {
             TargetTemp = new TemperatureSetting();
@@ -213,6 +213,6 @@ namespace Thermostat.Core
             this.DeadZone = 2;
             this.HeatAnticipation = .2;
             this.TemperatureDifferential = 4;
-        }      
+        }
     }
 }
