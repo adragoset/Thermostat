@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TouchUi", "TouchUi\TouchUi.csproj", "{025AC210-3BBD-46A3-9764-550120A8E0BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cp7_Driver", "Cp7_Driver\Cp7_Driver.csproj", "{57F2A8A6-9D5F-4FB8-BBF7-2A2AB625DF8A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{025AC210-3BBD-46A3-9764-550120A8E0BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{025AC210-3BBD-46A3-9764-550120A8E0BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{025AC210-3BBD-46A3-9764-550120A8E0BC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{57F2A8A6-9D5F-4FB8-BBF7-2A2AB625DF8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{57F2A8A6-9D5F-4FB8-BBF7-2A2AB625DF8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{57F2A8A6-9D5F-4FB8-BBF7-2A2AB625DF8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{57F2A8A6-9D5F-4FB8-BBF7-2A2AB625DF8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

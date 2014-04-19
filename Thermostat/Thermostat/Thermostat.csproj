@@ -64,8 +64,8 @@
     <Reference Include="GTM.GHIElectronics.Barometer, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="GTM.GHIElectronics.DisplayCP7, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="GTM.GHIElectronics.Display_CP7">
+      <HintPath>..\..\..\CP_7Driver\Display_CP7\Display_CP7_43\bin\Debug\GTM.GHIElectronics.Display_CP7.dll</HintPath>
     </Reference>
     <Reference Include="GTM.GHIElectronics.GasSense, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -165,10 +165,6 @@
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{314020F8-6720-4545-9DA8-3C7B25C9106C}</Project>
       <Name>Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cp7_Driver\Cp7_Driver.csproj">
-      <Project>{57F2A8A6-9D5F-4FB8-BBF7-2A2AB625DF8A}</Project>
-      <Name>Cp7_Driver</Name>
     </ProjectReference>
     <ProjectReference Include="..\TouchUi\TouchUi.csproj">
       <Project>{025AC210-3BBD-46A3-9764-550120A8E0BC}</Project>

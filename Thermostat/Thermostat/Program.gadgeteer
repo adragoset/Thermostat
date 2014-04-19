@@ -150,8 +150,8 @@
           <moduleHasSocketUses Id="219cf4de-4411-4f80-992c-fa662b04d748">
             <socketUse Id="50f9c0ea-1a29-4db3-8011-22c3c8bb0782" label="XY">
               <socket>
-                <socketUseReferencesSocket Id="3a5719cd-aebc-4461-a103-75736ef92563">
-                  <socketMoniker Id="2596b130-1421-4b60-99ff-a6c9d221746b" />
+                <socketUseReferencesSocket Id="4d56bf59-4adb-431a-9514-3bc44da8422c">
+                  <socketMoniker Id="75b23624-a297-47d6-b9d0-d7173b6a9749" />
                 </socketUseReferencesSocket>
               </socket>
             </socketUse>
