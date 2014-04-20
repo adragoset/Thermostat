@@ -30,10 +30,9 @@ namespace Thermostat
         //The temperature HUmidity Senesor using sock H3 of hubAp5
         private TemperatureHumidity temperatureHumidity;
         // <summary>The Display module using sockets 15, 16, 17, 6
-        private DisplayCP7 display;
-        /// <summary>The HubAP5 module using socket 12 of the mainboard.</summary>
-        private HubAP5 hubAP5;
 
+        private HubAP5 hub;
+        private DisplayCP7 display;
         /// <summary>The RelayX1 module using socket H6 of hubAP5.</summary>
         private RelayX1 heat;
 
@@ -44,7 +43,8 @@ namespace Thermostat
         private RelayX1 cool;
 
         /// <summary>The GasSense module using socket H2 of hubAP5.</summary>
-        private GasSense gasSense;
+        private GasSense carbonMonoxide;
+        private GasSense smoke_combustibles;
 
         private SensorMeasurements SystemState { get; set; }
         private Settings SystemSettings { get; set; }
@@ -73,15 +73,19 @@ namespace Thermostat
             Debug.Print("Program Started");
 
             //wifi = new GTM.GHIElectronics.WiFiRS21(3);
+            this.barometer = new Barometer(10);
+            this.display = new GTM.GHIElectronics.DisplayCP7(15, 16, 17, 14);
             this.realTimeClock = new SD2405_Real_Time_Clock(13);
-            this.display = new GTM.GHIElectronics.DisplayCP7(15, 16, 17, 6);
-            this.hubAP5 = new GTM.GHIElectronics.HubAP5(12);
-            this.heat = new GTM.GHIElectronics.RelayX1(this.hubAP5.HubSocket6);
-            this.fan = new GTM.GHIElectronics.RelayX1(this.hubAP5.HubSocket5);
-            this.cool = new GTM.GHIElectronics.RelayX1(this.hubAP5.HubSocket4);
-            this.gasSense = new GTM.GHIElectronics.GasSense(this.hubAP5.HubSocket2);
-            this.temperatureHumidity = new GTM.GHIElectronics.TemperatureHumidity(this.hubAP5.HubSocket3);
+           
+            this.hub = new HubAP5(1);
+            this.heat = new RelayX1(this.hub.HubSocket6);
+            this.cool = new RelayX1(this.hub.HubSocket5);
+            this.fan = new RelayX1(this.hub.HubSocket4);
+            this.carbonMonoxide = new GasSense(this.hub.HubSocket2);
+            this.smoke_combustibles = new GasSense(this.hub.HubSocket1);
 
+
+            this.temperatureHumidity = new GTM.GHIElectronics.TemperatureHumidity(this.hub.HubSocket3);
             this.SystemSettings = new Settings();
             this.SystemState = new SensorMeasurements(temperatureHumidity, barometer);
             this.ControlLoop = new HvacControl(heat, cool, fan, SystemSettings, SystemState);

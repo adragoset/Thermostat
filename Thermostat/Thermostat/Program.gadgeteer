@@ -67,8 +67,8 @@
           <moduleHasSocketUses Id="e17867b6-9015-476d-95c0-43c4a1d35d5b">
             <socketUse Id="3fbb167b-45eb-4096-8303-bdcaf66e32c0" label="I">
               <socket>
-                <socketUseReferencesSocket Id="9808cebc-4f67-48b8-9931-234b67a45de0">
-                  <socketMoniker Id="f7998919-f492-43d6-957f-81df4af8a68c" />
+                <socketUseReferencesSocket Id="41ce1c0b-2f5c-4be1-8553-5f5c4904086a">
+                  <socketMoniker Id="fc908634-7ea1-47d0-a911-c4c46a5ca4f7" />
                 </socketUseReferencesSocket>
               </socket>
             </socketUse>

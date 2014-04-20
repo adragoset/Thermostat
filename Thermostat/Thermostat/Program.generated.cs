@@ -15,7 +15,7 @@ namespace Thermostat {
     
     public partial class Program : Gadgeteer.Program {
         
-        /// <summary>The Barometer module using socket 10 of the mainboard.</summary>
+        /// <summary>The Barometer module using socket 7 of the mainboard.</summary>
         private Gadgeteer.Modules.GHIElectronics.Barometer barometer;
         
         /// <summary>The SDCard module using socket 9 of the mainboard.</summary>
@@ -43,7 +43,7 @@ namespace Thermostat {
         }
         
         private void InitializeModules() {
-            this.barometer = new GTM.GHIElectronics.Barometer(10);
+            this.barometer = new GTM.GHIElectronics.Barometer(7);
             this.sdCard = new GTM.GHIElectronics.SDCard(9);
         }
     }
