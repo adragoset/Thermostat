@@ -74,7 +74,7 @@ namespace Thermostat
 
             //wifi = new GTM.GHIElectronics.WiFiRS21(3);
             this.barometer = new Barometer(10);
-            this.display = new GTM.GHIElectronics.DisplayCP7(15, 16, 17, 14);
+            this.display = new GTM.GHIElectronics.DisplayCP7(15, 16, 17, 6);
             this.realTimeClock = new SD2405_Real_Time_Clock(13);
            
             this.hub = new HubAP5(1);

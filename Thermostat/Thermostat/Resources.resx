@@ -185,10 +185,10 @@
     &lt;TextBlock Name="TimeDisplay" X="20" Y="20" Width="400" Height="100" Alpha="255" Text="TextBlock" TextAlign="Center" TextVerticalAlign="Middle" Font="6" FontColor="5FFB17" BackColor="2C3539" ShowBackColor="True"/&gt;
     &lt;TextBlock Name="Humidity" X="280" Y="170" Width="172" Height="80" Alpha="255" Text="TextBlock" TextAlign="Center" TextVerticalAlign="Middle" Font="7" FontColor="5FFB17" BackColor="2C3539" ShowBackColor="True"/&gt;
     &lt;TextBlock Name="Pressure" X="458" Y="170" Width="172" Height="80" Alpha="255" Text="TextBlock" TextAlign="Center" TextVerticalAlign="Middle" Font="7" FontColor="5FFB17" BackColor="2C3539" ShowBackColor="True"/&gt;
-    &lt;TextBlock Name="MinText" X="20" Y="130" Width="122" Height="40" Alpha="255" Text="Min" TextAlign="Center" TextVerticalAlign="Middle" Font="7" FontColor="0000FF" BackColor="000000" ShowBackColor="False"/&gt;
-    &lt;TextBlock Name="MaxText" X="148" Y="129" Width="122" Height="40" Alpha="255" Text="Max" TextAlign="Center" TextVerticalAlign="Middle" Font="7" FontColor="FF0000" BackColor="000000" ShowBackColor="False"/&gt;
-    &lt;TextBlock Name="HumidityText" X="280" Y="129" Width="172" Height="40" Alpha="255" Text="Humidity" TextAlign="Center" TextVerticalAlign="Middle" Font="7" FontColor="0000FF" BackColor="" ShowBackColor="False"/&gt;
-    &lt;TextBlock Name="PressureText" X="458" Y="129" Width="172" Height="40" Alpha="255" Text="Pressure" TextAlign="Center" TextVerticalAlign="Middle" Font="7" FontColor="FF0000" BackColor="000000" ShowBackColor="False"/&gt;
+    &lt;TextBlock Name="MinText" X="20" Y="130" Width="122" Height="40" Alpha="255" Text="Min" TextAlign="Center" TextVerticalAlign="Middle" Font="7" FontColor="FFFFFF" BackColor="0000FF" ShowBackColor="True"/&gt;
+    &lt;TextBlock Name="MaxText" X="148" Y="129" Width="122" Height="40" Alpha="255" Text="Max" TextAlign="Center" TextVerticalAlign="Middle" Font="7" FontColor="FFFFFF" BackColor="FF0000" ShowBackColor="True"/&gt;
+    &lt;TextBlock Name="HumidityText" X="280" Y="129" Width="172" Height="40" Alpha="255" Text="Humidity" TextAlign="Center" TextVerticalAlign="Middle" Font="7" FontColor="FFFFFF" BackColor="A658A6" ShowBackColor="True"/&gt;
+    &lt;TextBlock Name="PressureText" X="458" Y="129" Width="172" Height="40" Alpha="255" Text="Pressure" TextAlign="Center" TextVerticalAlign="Middle" Font="7" FontColor="FFFFFF" BackColor="04C755" ShowBackColor="True"/&gt;
   &lt;/Window&gt;
 &lt;/Glide&gt;</value>
   </data>
