@@ -4,8 +4,28 @@ namespace Thermostat.Core
     public enum TemperatureUnits { Farenheit, Celcius, Kelvin }
     public class Temperature
     {
-        private static object Value_Lock = new object();
-        private double Value { get; set; }
+        private static object Temperature_Lock = new object();
+
+        private double temperature;
+        private double Value
+        {
+            get
+            {
+                lock (Temperature_Lock)
+                {
+                    return temperature;
+                }
+            }
+            set
+            {
+                lock (Temperature_Lock)
+                {
+                    temperature = value;
+                }
+
+                OnTemperatureChanged(new TemperatureChangedArgs(temperature, this.FormattedString()));
+            }
+        }
 
         private static object Units_Lock = new object();
         private TemperatureUnits Units { get; set; }
@@ -28,7 +48,7 @@ namespace Thermostat.Core
 
         public Temperature(double temp)
         {
-            SetTemperature(temp);
+            this.Value = temp;
             SetUnitsCelcius();
         }
 
@@ -65,37 +85,25 @@ namespace Thermostat.Core
             }
         }
 
-        public void SetTemperature(double temperature)
-        {
-            lock (Value_Lock)
-            {
-                this.Value = temperature;
-            }
-            OnTemperatureChanged(new TemperatureChangedArgs(temperature, this.FormattedString()));
-        }
-
         public double GetTemperature()
         {
 
             double convertedValue = 0;
             double value = 0;
 
-            lock (Value_Lock)
-            {
-                value = this.Value;
-            }
+            value = this.Value;
 
             if (this.Units == TemperatureUnits.Celcius)
             {
-                convertedValue = this.Value;
+                convertedValue = value;
             }
             else if (this.Units == TemperatureUnits.Farenheit)
             {
-                convertedValue = this.Value * 1.8 + 32;
+                convertedValue = value * 1.8 + 32;
             }
             else
             {
-                convertedValue = this.Value + 273.15;
+                convertedValue = value + 273.15;
             }
 
             return System.Math.Round(convertedValue * 100.0) / 100.0;
@@ -120,6 +128,11 @@ namespace Thermostat.Core
             {
                 return this.GetTemperature().ToString("f2") + " K";
             }
+        }
+
+        public void SetTemperature(double temperature)
+        {
+            this.Value = temperature;
         }
     }
 }

@@ -64,18 +64,8 @@
     <Reference Include="GTM.GHIElectronics.Barometer, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
-    <Reference Include="GTM.GHIElectronics.Display_CP7">
-      <HintPath>..\..\..\CP_7Driver\Display_CP7\Display_CP7_43\bin\Debug\GTM.GHIElectronics.Display_CP7.dll</HintPath>
-    </Reference>
-    <Reference Include="GTM.GHIElectronics.GasSense, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="GTM.GHIElectronics.HubAP5, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
-    <Reference Include="GTM.GHIElectronics.RelayX1, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
+    <Reference Include="GTM.GHIElectronics.GasSense, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="GTM.GHIElectronics.RelayX1, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="GTM.GHIElectronics.SDCard, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -162,6 +152,18 @@
     <None Include="Resources\PowerOffDisabled.gif" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\CP_7Driver\Display_CP7\Display_CP7_43\Display_CP7_43.csproj">
+      <Project>{D4977B24-52F5-4C7D-B774-B7F670D67A8A}</Project>
+      <Name>Display_CP7_43</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Hub-AP5-MF-4.3\HubAP5_43\HubAP5_43.csproj">
+      <Project>{6895BCDF-5E1F-4199-B32E-D66F54A96902}</Project>
+      <Name>HubAP5_43</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\SD2403-Real--Time-clock-Driver\SD2405 Real-Time Clock\SD2405_Real_Time_Clock_42\SD2405_Real_Time_Clock_43.csproj">
+      <Project>{F4231ADD-9A18-439A-8537-A16097AABDC3}</Project>
+      <Name>SD2405_Real_Time_Clock_43</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{314020F8-6720-4545-9DA8-3C7B25C9106C}</Project>
       <Name>Core</Name>

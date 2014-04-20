@@ -44,14 +44,15 @@
     </Reference>
     <Reference Include="GHI.Glide, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="GHIElectronics.Gadgeteer.FEZRaptor, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="GTM.GHIElectronics.Display_CP7">
-      <HintPath>..\..\..\CP_7Driver\Display_CP7\Display_CP7_43\bin\Debug\GTM.GHIElectronics.Display_CP7.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.SPOT.Graphics" />
     <Reference Include="Microsoft.SPOT.Native">
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\CP_7Driver\Display_CP7\Display_CP7_43\Display_CP7_43.csproj">
+      <Project>{D4977B24-52F5-4C7D-B774-B7F670D67A8A}</Project>
+      <Name>Display_CP7_43</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\Core.csproj">
       <Project>{314020F8-6720-4545-9DA8-3C7B25C9106C}</Project>
       <Name>Core</Name>

@@ -1,10 +1,10 @@
 using System;
 using Microsoft.SPOT;
 
-using Gadgeteer.Modules.GHIElectronics;
 using GHI.Glide;
 using GHI.Glide.UI;
 using GHI.Glide.Geom;
+using Gadgeteer.Modules.GHIElectronics;
 
 namespace Thermostat.TouchUi
 {

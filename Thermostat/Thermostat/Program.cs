@@ -12,6 +12,7 @@ using Gadgeteer.Networking;
 using GT = Gadgeteer;
 using GTM = Gadgeteer.Modules;
 using Gadgeteer.Modules.GHIElectronics;
+using Gadgeteer.Modules.DFRobot;
 using Thermostat.Core;
 using Thermostat.TouchUi;
 
@@ -25,7 +26,25 @@ namespace Thermostat
         public const string Encryption_Key = "1CdQymMKb42I5Ptf6xSZPFaEjZYiT7C4";
 
         //private GTM.GHIElectronics.WiFiRS21 wifi;
+        private SD2405_Real_Time_Clock realTimeClock;
+        //The temperature HUmidity Senesor using sock H3 of hubAp5
         private TemperatureHumidity temperatureHumidity;
+        // <summary>The Display module using sockets 15, 16, 17, 6
+        private DisplayCP7 display;
+        /// <summary>The HubAP5 module using socket 12 of the mainboard.</summary>
+        private HubAP5 hubAP5;
+
+        /// <summary>The RelayX1 module using socket H6 of hubAP5.</summary>
+        private RelayX1 heat;
+
+        /// <summary>The RelayX1 module using socket H5 of hubAP5.</summary>
+        private RelayX1 fan;
+
+        /// <summary>The RelayX1 module using socket H4 of hubAP5.</summary>
+        private RelayX1 cool;
+
+        /// <summary>The GasSense module using socket H2 of hubAP5.</summary>
+        private GasSense gasSense;
 
         private SensorMeasurements SystemState { get; set; }
         private Settings SystemSettings { get; set; }
@@ -54,22 +73,24 @@ namespace Thermostat
             Debug.Print("Program Started");
 
             //wifi = new GTM.GHIElectronics.WiFiRS21(3);
+            this.realTimeClock = new SD2405_Real_Time_Clock(13);
+            this.display = new GTM.GHIElectronics.DisplayCP7(15, 16, 17, 6);
+            this.hubAP5 = new GTM.GHIElectronics.HubAP5(12);
+            this.heat = new GTM.GHIElectronics.RelayX1(this.hubAP5.HubSocket6);
+            this.fan = new GTM.GHIElectronics.RelayX1(this.hubAP5.HubSocket5);
+            this.cool = new GTM.GHIElectronics.RelayX1(this.hubAP5.HubSocket4);
+            this.gasSense = new GTM.GHIElectronics.GasSense(this.hubAP5.HubSocket2);
             this.temperatureHumidity = new GTM.GHIElectronics.TemperatureHumidity(this.hubAP5.HubSocket3);
 
             this.SystemSettings = new Settings();
             this.SystemState = new SensorMeasurements(temperatureHumidity, barometer);
-            this.ControlLoop = new HvacControl(Heat, Cool, Fan, SystemSettings, SystemState);
+            this.ControlLoop = new HvacControl(heat, cool, fan, SystemSettings, SystemState);
             this.UiScreens = new Hashtable();
             this.Images = new Hashtable();
             this.Fonts = new Hashtable();
             this.LoadResources();
 
-            this.Ui = new ThermostatUi(Display, UiScreens, Images, Fonts, this.SystemSettings, this.SystemState);
-
-            // Create a timer
-            LoggingTimer = new GT.Timer(15000);
-            LoggingTimer.Tick += new GT.Timer.TickEventHandler(timer_Tick);
-            LoggingTimer.Start();
+            this.Ui = new ThermostatUi(display, UiScreens, Images, Fonts, this.SystemSettings, this.SystemState);
         }
 
         private void LoadResources()

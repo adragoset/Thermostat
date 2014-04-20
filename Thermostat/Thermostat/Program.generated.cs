@@ -15,24 +15,6 @@ namespace Thermostat {
     
     public partial class Program : Gadgeteer.Program {
         
-        /// <summary>The HubAP5 module using socket 12 of the mainboard.</summary>
-        private Gadgeteer.Modules.GHIElectronics.HubAP5 hubAP5;
-        
-        /// <summary>The DisplayCP7 module using sockets 15, 16, 17 and 6 of the mainboard.</summary>
-        private Gadgeteer.Modules.GHIElectronics.DisplayCP7 Display;
-        
-        /// <summary>The RelayX1 module using socket H6 of hubAP5.</summary>
-        private Gadgeteer.Modules.GHIElectronics.RelayX1 Heat;
-        
-        /// <summary>The RelayX1 module using socket H5 of hubAP5.</summary>
-        private Gadgeteer.Modules.GHIElectronics.RelayX1 Fan;
-        
-        /// <summary>The RelayX1 module using socket H4 of hubAP5.</summary>
-        private Gadgeteer.Modules.GHIElectronics.RelayX1 Cool;
-        
-        /// <summary>The GasSense module using socket H2 of hubAP5.</summary>
-        private Gadgeteer.Modules.GHIElectronics.GasSense gasSense;
-        
         /// <summary>The Barometer module using socket 10 of the mainboard.</summary>
         private Gadgeteer.Modules.GHIElectronics.Barometer barometer;
         
@@ -61,12 +43,6 @@ namespace Thermostat {
         }
         
         private void InitializeModules() {
-            this.hubAP5 = new GTM.GHIElectronics.HubAP5(12);
-            this.Display = new GTM.GHIElectronics.DisplayCP7(15, 16, 17, 6);
-            this.Heat = new GTM.GHIElectronics.RelayX1(this.hubAP5.HubSocket6);
-            this.Fan = new GTM.GHIElectronics.RelayX1(this.hubAP5.HubSocket5);
-            this.Cool = new GTM.GHIElectronics.RelayX1(this.hubAP5.HubSocket4);
-            this.gasSense = new GTM.GHIElectronics.GasSense(this.hubAP5.HubSocket2);
             this.barometer = new GTM.GHIElectronics.Barometer(10);
             this.sdCard = new GTM.GHIElectronics.SDCard(9);
         }
