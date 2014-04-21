@@ -16,8 +16,8 @@ namespace Thermostat.TouchUi
 
         public TouchInitialization(DisplayCP7 display) {
             this.Display = display;
-            this.Display.ScreenPressed += (a, b) => display_CP7_ScreenPressed(a, b);
-            this.Display.ScreenReleased += screen_released;
+            this.Display.ScreenPressed += new DisplayCP7.TouchEventHandler(display_CP7_ScreenPressed);
+            this.Display.ScreenReleased += new DisplayCP7.TouchEventHandlerTouchReleased(screen_released);
         }
 
         private void screen_released(DisplayCP7 sender)
@@ -27,7 +27,7 @@ namespace Thermostat.TouchUi
             GlideTouch.RaiseTouchUpEvent(sender, new TouchEventArgs(this.last));
         }
 
-        public void display_CP7_ScreenPressed(DisplayCP7 sender, DisplayCP7.TouchStatus touchStatus)
+               public void display_CP7_ScreenPressed(DisplayCP7 sender, DisplayCP7.TouchStatus touchStatus)
         {
             if (touchStatus.numTouches <= 0 || GlideTouch.IgnoreAllEvents)
                 return;
@@ -51,15 +51,6 @@ namespace Thermostat.TouchUi
 
                 GlideTouch.RaiseTouchDownEvent(sender, new TouchEventArgs(touch));
             }
-        }
-
-        public object display_CP7_ScreenReleased(DisplayCP7 sender)
-        {
-            this.touched = false;
-
-            GlideTouch.RaiseTouchUpEvent(sender, new TouchEventArgs(this.last));
-
-            return new object();
         }
     }
 }

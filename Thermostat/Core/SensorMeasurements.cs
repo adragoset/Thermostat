@@ -18,6 +18,8 @@ namespace Thermostat.Core
 
         private TemperatureHumidity TempHumiditySensor;
         private Barometer BarometerSensor;
+        private GasSense CoSensor;
+        private GasSense SmokeSensor;
 
         public static object Date_Lock = new object();
         private DateTime dateNow { get; set; }
@@ -61,13 +63,13 @@ namespace Thermostat.Core
 
         }
 
-        public SensorMeasurements(TemperatureHumidity tempSensor, Barometer barSensor)
+        public SensorMeasurements(TemperatureHumidity tempSensor, Barometer barSensor, GasSense coSensor, GasSense smokeSensor)
         {
             PrimaryAirTemperature = new Temperature(0);
             PrimaryAirHumidity = new Humidity();
             AtmPressure = new Pressure();
             SetTemperatureUnits(TemperatureUnits.Farenheit);
-            SetupSensorHandlers(tempSensor, barSensor);
+            SetupSensorHandlers(tempSensor, barSensor, coSensor, smokeSensor);
 
             // Create a timer
             ClockTimer = new GT.Timer(500);
@@ -96,7 +98,7 @@ namespace Thermostat.Core
             }
         }
 
-        private void SetupSensorHandlers(TemperatureHumidity tempSensor, Barometer barSensor)
+        private void SetupSensorHandlers(TemperatureHumidity tempSensor, Barometer barSensor, GasSense coSensor, GasSense smokeSensor)
         {
             TempHumiditySensor = tempSensor;
             TempHumiditySensor.MeasurementComplete += new TemperatureHumidity.MeasurementCompleteEventHandler(Temperature_Measuerment_Complete);
@@ -106,6 +108,10 @@ namespace Thermostat.Core
             BarometerSensor.ContinuousMeasurementInterval = new TimeSpan(5000);
             BarometerSensor.MeasurementComplete += new Barometer.MeasurementCompleteEventHandler(Barometer_Measurement_Complete);
             BarometerSensor.StartContinuousMeasurements();
+
+            CoSensor = coSensor;
+            //CoSensor.
+            SmokeSensor = smokeSensor;
         }
 
         private void Temperature_Measuerment_Complete(TemperatureHumidity sender, double temperature, double relativeHumidity)

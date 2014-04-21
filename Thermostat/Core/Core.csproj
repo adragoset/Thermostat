@@ -47,6 +47,7 @@
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft .NET Gadgeteer\Core\Assemblies\.NET Micro Framework 4.3\Gadgeteer.dll</HintPath>
     </Reference>
     <Reference Include="GTM.GHIElectronics.Barometer, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="GTM.GHIElectronics.GasSense, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="GTM.GHIElectronics.RelayX1, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="GTM.GHIElectronics.TempHumidity, Version=4.3.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.SPOT.Native">

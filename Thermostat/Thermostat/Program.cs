@@ -77,7 +77,7 @@ namespace Thermostat
             this.display = new GTM.GHIElectronics.DisplayCP7(15, 16, 17, 6);
             this.realTimeClock = new SD2405_Real_Time_Clock(13);
            
-            this.hub = new HubAP5(1);
+            this.hub = new HubAP5(18);
             this.heat = new RelayX1(this.hub.HubSocket6);
             this.cool = new RelayX1(this.hub.HubSocket5);
             this.fan = new RelayX1(this.hub.HubSocket4);
@@ -87,7 +87,7 @@ namespace Thermostat
 
             this.temperatureHumidity = new GTM.GHIElectronics.TemperatureHumidity(this.hub.HubSocket3);
             this.SystemSettings = new Settings();
-            this.SystemState = new SensorMeasurements(temperatureHumidity, barometer);
+            this.SystemState = new SensorMeasurements(temperatureHumidity, barometer, carbonMonoxide, smoke_combustibles);
             this.ControlLoop = new HvacControl(heat, cool, fan, SystemSettings, SystemState);
             this.UiScreens = new Hashtable();
             this.Images = new Hashtable();
